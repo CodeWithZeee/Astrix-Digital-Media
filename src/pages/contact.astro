@@ -244,18 +244,15 @@ import Footer from '../components/Footer.astro';
 <script>
   document.getElementById('contact-form')?.addEventListener('submit', function(e) {
     e.preventDefault();
-    
     // Get form data
-    const formData = new FormData(this);
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    
     // Here you would typically send the data to your backend
     console.log('Form submitted:', data);
-    
     // Show success message
     alert('Thank you! We\'ll be in touch within 2 hours to schedule your demo.');
-    
     // Reset form
-    this.reset();
+    form.reset();
   });
 </script>

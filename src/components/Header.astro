@@ -7,7 +7,7 @@
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center">
-          <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-8 w-auto">
+                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto">
         </a>
       </div>
 
@@ -18,7 +18,8 @@
         <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Pricing</a>
         <a href="#case-studies" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Case Studies</a>
         <a href="#blog" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Blog</a>
-        <a href="/contact" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Contact</a>
+        <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Contact</a>
+        <a href="/login" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Login</a>
         <div class="relative group">
           <button class="text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center">
             Legal
@@ -28,8 +29,8 @@
           </button>
           <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="py-1">
-              <a href="/privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Policy</a>
-              <a href="/terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Terms of Service</a>
+              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Policy</a>
+              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -53,7 +54,8 @@
         <a href="#pricing" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Pricing</a>
         <a href="#case-studies" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Case Studies</a>
         <a href="#blog" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Blog</a>
-        <a href="/contact" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Contact</a>
+        <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Contact</a>
+        <a href="/login" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Login</a>
         <a href="/privacy-policy" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Privacy Policy</a>
         <a href="/terms-of-service" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Terms of Service</a>
       </div>
@@ -68,6 +70,27 @@
 
     mobileMenuButton?.addEventListener('click', function() {
       mobileMenu?.classList.toggle('hidden');
+    });
+
+    // Smooth scroll for navbar anchor links (works after visiting any section)
+    function handleAnchorClick(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        const targetId = href.slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          history.replaceState(null, '', `#${targetId}`);
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      }
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.removeEventListener('click', handleAnchorClick);
+      link.addEventListener('click', handleAnchorClick);
     });
   });
 </script>
