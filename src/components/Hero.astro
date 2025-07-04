@@ -1,88 +1,166 @@
 ---
+import AnimatedBackground from './AnimatedBackground.astro';
+import TechyElements from './TechyElements.astro';
 ---
 
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50 overflow-hidden">
-  <!-- Background Elements -->
-  <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
-    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
-  </div>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated Background -->
+  <AnimatedBackground />
+  
+  <!-- Techy Elements -->
+  <TechyElements />
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 z-10">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <!-- Content -->
       <div class="text-center lg:text-left animate-slide-up">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-          AI Growth Infrastructure for 
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
+        <div class="mb-4 flex items-center justify-center lg:justify-start gap-2">
+          <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span class="text-green-400 text-sm font-mono">AI SYSTEMS ONLINE</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <span class="text-white">AI Growth Infrastructure for</span>
+          <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-pulse">
             Business Development
           </span>
         </h1>
         
-        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
           Transform your business with our comprehensive AI-powered platform that automates customer interactions, 
           streamlines lead management, and accelerates growth through intelligent automation.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="#contact" class="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
-            Schedule Free Demo
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+          <a href="#contact" class="group relative bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25">
+            <span class="relative z-10">Schedule Free Demo</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
           </a>
-          <a href="#how-it-works" class="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-600 hover:text-white transition-all duration-200">
+          <a href="#how-it-works" class="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300 backdrop-blur-sm">
             Learn More
           </a>
         </div>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-gray-200">
-          <div class="text-center">
-            <div class="text-2xl font-bold text-primary-600">500+</div>
-            <div class="text-sm text-gray-600">Businesses Automated</div>
+        <!-- Tech Status Indicators -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 text-center">
+            <div class="flex items-center justify-center mb-2">
+              <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>
+              <span class="text-green-400 text-xs font-mono">ACTIVE</span>
+            </div>
+            <div class="text-2xl font-bold text-cyan-400">500+</div>
+            <div class="text-xs text-gray-400">Businesses Automated</div>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-primary-600">95%</div>
-            <div class="text-sm text-gray-600">Customer Satisfaction</div>
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-purple-500/30 rounded-lg p-4 text-center">
+            <div class="flex items-center justify-center mb-2">
+              <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse mr-2"></div>
+              <span class="text-purple-400 text-xs font-mono">OPTIMAL</span>
+            </div>
+            <div class="text-2xl font-bold text-purple-400">95%</div>
+            <div class="text-xs text-gray-400">Customer Satisfaction</div>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-bold text-primary-600">24/7</div>
-            <div class="text-sm text-gray-600">AI Support</div>
+          <div class="bg-gray-900/50 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 text-center">
+            <div class="flex items-center justify-center mb-2">
+              <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse mr-2"></div>
+              <span class="text-blue-400 text-xs font-mono">ONLINE</span>
+            </div>
+            <div class="text-2xl font-bold text-blue-400">24/7</div>
+            <div class="text-xs text-gray-400">AI Support</div>
           </div>
         </div>
       </div>
 
-      <!-- Visual -->
+      <!-- Enhanced Dashboard Mockup -->
       <div class="relative animate-fade-in" style="animation-delay: 0.3s;">
         <div class="relative">
-          <!-- Main Dashboard Mockup -->
-          <div class="bg-white rounded-2xl shadow-2xl p-6 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-            <div class="bg-gradient-to-r from-primary-500 to-accent-500 h-3 rounded-t-lg mb-4"></div>
-            <div class="space-y-4">
-              <div class="flex items-center space-x-3">
+          <!-- Main Dashboard -->
+          <div class="bg-gray-900/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-cyan-500/30 p-6 transform hover:scale-105 transition-all duration-500">
+            <!-- Header with status -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center space-x-2">
                 <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <div class="text-sm text-gray-600">AI Receptionist Active</div>
+                <span class="text-green-400 text-sm font-mono">AI RECEPTIONIST ACTIVE</span>
               </div>
-              <div class="bg-gray-100 h-20 rounded-lg flex items-center justify-center">
-                <div class="text-gray-500">Live Chat Interface</div>
-              </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="bg-primary-50 p-3 rounded-lg">
-                  <div class="text-xs text-primary-600 font-semibold">Leads Today</div>
-                  <div class="text-lg font-bold text-primary-700">47</div>
+              <div class="text-cyan-400 text-xs font-mono">SYSTEM STATUS: OPTIMAL</div>
+            </div>
+            
+            <!-- Live Chat Interface -->
+            <div class="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-gray-300 text-sm">Live Chat Interface</span>
+                <div class="flex space-x-1">
+                  <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                  <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
                 </div>
-                <div class="bg-accent-50 p-3 rounded-lg">
-                  <div class="text-xs text-accent-600 font-semibold">Conversion Rate</div>
-                  <div class="text-lg font-bold text-accent-700">68%</div>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-blue-600/20 text-blue-300 p-2 rounded text-xs">
+                  Customer: "I need help with my order"
+                </div>
+                <div class="bg-green-600/20 text-green-300 p-2 rounded text-xs flex items-center">
+                  AI: "I'd be happy to help you with that..."
+                  <div class="ml-2 flex space-x-1">
+                    <div class="w-1 h-1 bg-green-400 rounded-full animate-bounce"></div>
+                    <div class="w-1 h-1 bg-green-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+                    <div class="w-1 h-1 bg-green-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Metrics Grid -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 p-3 rounded-lg border border-cyan-500/30">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-cyan-400 font-mono">LEADS TODAY</div>
+                    <div class="text-lg font-bold text-cyan-300">47</div>
+                  </div>
+                  <div class="text-green-400">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                  <div class="bg-cyan-400 h-1 rounded-full animate-pulse" style="width: 68%"></div>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-3 rounded-lg border border-purple-500/30">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-purple-400 font-mono">CONVERSION</div>
+                    <div class="text-lg font-bold text-purple-300">68%</div>
+                  </div>
+                  <div class="text-green-400">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-1 mt-2">
+                  <div class="bg-purple-400 h-1 rounded-full animate-pulse" style="width: 68%"></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Floating Elements -->
-          <div class="absolute -top-4 -right-4 bg-green-500 text-white p-2 rounded-lg text-xs font-semibold animate-bounce">
-            +12 New Leads
+          <!-- Floating Notifications -->
+          <div class="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white p-3 rounded-lg text-xs font-semibold animate-bounce shadow-lg border border-green-400/50">
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span>+12 New Leads</span>
+            </div>
           </div>
-          <div class="absolute -bottom-4 -left-4 bg-blue-500 text-white p-2 rounded-lg text-xs font-semibold animate-pulse">
-            AI Processing...
+          
+          <div class="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-3 rounded-lg text-xs font-semibold animate-pulse shadow-lg border border-blue-400/50">
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-white rounded-full animate-spin"></div>
+              <span>AI Processing...</span>
+            </div>
           </div>
         </div>
       </div>

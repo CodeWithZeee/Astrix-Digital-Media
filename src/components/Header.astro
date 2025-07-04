@@ -1,36 +1,57 @@
 ---
 ---
 
-<header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300">
+<header class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl border-b border-cyan-500/30 z-50 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center">
-                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto">
+        <a href="/" class="flex items-center group">
+          <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto filter brightness-0 invert group-hover:drop-shadow-[0_0_10px_rgba(34,211,238,0.7)] transition-all duration-300">
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">How It Works</a>
-        <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Features</a>
-        <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Pricing</a>
-        <a href="#case-studies" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Case Studies</a>
-        <a href="#blog" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Blog</a>
-        <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Contact</a>
-        <a href="/login" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Login</a>
+        <a href="#how-it-works" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          How It Works
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#features" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Features
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#pricing" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Pricing
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#case-studies" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Case Studies
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#blog" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Blog
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#contact" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="/login" class="relative text-gray-300 hover:text-cyan-400 transition-colors duration-200 group">
+          Login
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
         <div class="relative group">
-          <button class="text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center">
+          <button class="text-gray-300 hover:text-cyan-400 transition-colors duration-200 flex items-center">
             Legal
             <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute right-0 mt-2 w-48 bg-gray-900/95 backdrop-blur-xl rounded-md shadow-lg border border-cyan-500/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="py-1">
-              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Policy</a>
-              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Terms of Service</a>
+              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-300 hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors duration-200">Privacy Policy</a>
+              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-300 hover:bg-cyan-500/20 hover:text-cyan-400 transition-colors duration-200">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -38,7 +59,7 @@
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button type="button" class="mobile-menu-button text-gray-600 hover:text-gray-900 focus:outline-none">
+        <button type="button" class="mobile-menu-button text-gray-300 hover:text-cyan-400 focus:outline-none">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -48,16 +69,16 @@
 
     <!-- Mobile Navigation -->
     <div class="mobile-menu hidden md:hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-100">
-        <a href="#how-it-works" class="block px-3 py-2 text-gray-600 hover:text-primary-600">How It Works</a>
-        <a href="#features" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Features</a>
-        <a href="#pricing" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Pricing</a>
-        <a href="#case-studies" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Case Studies</a>
-        <a href="#blog" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Blog</a>
-        <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Contact</a>
-        <a href="/login" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Login</a>
-        <a href="/privacy-policy" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Privacy Policy</a>
-        <a href="/terms-of-service" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Terms of Service</a>
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-900/95 backdrop-blur-xl border-t border-cyan-500/30">
+        <a href="#how-it-works" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">How It Works</a>
+        <a href="#features" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Features</a>
+        <a href="#pricing" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Pricing</a>
+        <a href="#case-studies" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Case Studies</a>
+        <a href="#blog" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Blog</a>
+        <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Contact</a>
+        <a href="/login" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Login</a>
+        <a href="/privacy-policy" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Privacy Policy</a>
+        <a href="/terms-of-service" class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/20 rounded transition-colors duration-200">Terms of Service</a>
       </div>
     </div>
   </nav>
@@ -72,7 +93,7 @@
       mobileMenu?.classList.toggle('hidden');
     });
 
-    // Smooth scroll for navbar anchor links (works after visiting any section)
+    // Smooth scroll for navbar anchor links
     function handleAnchorClick(e) {
       const href = this.getAttribute('href');
       if (href && href.startsWith('#')) {
