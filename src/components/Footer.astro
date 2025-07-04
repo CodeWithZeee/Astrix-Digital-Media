@@ -7,7 +7,7 @@
       <!-- Company Info -->
       <div class="lg:col-span-1">
         <div class="flex items-center space-x-2 mb-4">
-          <img style="filter: invert(1);" src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-8 w-auto">
+          <img style="filter: invert(1);" src="/Astrix_logo.png" alt="Astrix Digital Media" class="h-8 w-auto" data-astro-footer-logo>
         </div>
         <p class="text-gray-400 mb-6">
           AI Growth Infrastructure for Business Development. Transform your customer interactions 
@@ -84,3 +84,9 @@
     </div>
   </div>
 </footer>
+
+<style>
+  html.dark [data-astro-footer-logo] {
+    filter: invert(1) !important;
+  }
+</style>
