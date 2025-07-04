@@ -20,8 +20,97 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="font-sans antialiased">
+  <body class="font-sans antialiased bg-white dark:bg-darkbg-900 transition-colors duration-500">
+    <div id="global-particles-bg" style="position:fixed;z-index:-1;top:0;left:0;width:100vw;height:100vh;pointer-events:none;"></div>
+    <div id="global-light-bg" class="fixed top-0 left-0 w-full h-full z-[-2] pointer-events-none transition-opacity duration-500 dark:hidden"></div>
     <slot />
+    <script is:inline>
+      const bg = document.getElementById('global-particles-bg');
+      const lightBg = document.getElementById('global-light-bg');
+      function createParticles(isDark) {
+        bg.innerHTML = '';
+        if (isDark) {
+          // Dark mode particles (already implemented)
+          const num = 48;
+          for(let i=0;i<num;i++){
+            const p = document.createElement('div');
+            const size = Math.random()*6+3;
+            p.style.position = 'absolute';
+            p.style.width = p.style.height = `${size}px`;
+            p.style.borderRadius = '50%';
+            p.style.background = `rgba(168,139,250,0.18)`;
+            p.style.left = `${Math.random()*100}%`;
+            p.style.top = `${Math.random()*100}%`;
+            p.style.boxShadow = `0 0 ${Math.random()*16+8}px 2px rgba(139,92,246,0.18)`;
+            p.style.animation = `particleFloat ${4+Math.random()*8}s ease-in-out infinite alternate`;
+            p.style.opacity = 0.7 + Math.random()*0.3;
+            bg.appendChild(p);
+          }
+          lightBg.style.display = 'none';
+        } else {
+          // Light mode animated background: floating colored shapes
+          bg.innerHTML = '';
+          lightBg.innerHTML = '';
+          lightBg.style.display = 'block';
+          const colors = [
+            'rgba(14,165,233,0.10)', // blue
+            'rgba(139,92,246,0.10)', // purple
+            'rgba(34,197,94,0.10)',  // green
+            'rgba(251,191,36,0.10)', // yellow
+            'rgba(239,68,68,0.10)'   // red
+          ];
+          for(let i=0;i<18;i++){
+            const s = document.createElement('div');
+            const size = Math.random()*120+60;
+            s.style.position = 'absolute';
+            s.style.width = s.style.height = `${size}px`;
+            s.style.borderRadius = `${Math.random()>0.5?50:30}%`;
+            s.style.background = colors[Math.floor(Math.random()*colors.length)];
+            s.style.left = `${Math.random()*100}%`;
+            s.style.top = `${Math.random()*100}%`;
+            s.style.filter = 'blur(2px)';
+            s.style.animation = `floatShape ${6+Math.random()*8}s ease-in-out infinite alternate`;
+            lightBg.appendChild(s);
+          }
+        }
+      }
+      // Initial
+      createParticles(document.documentElement.classList.contains('dark'));
+      // Listen for theme changes
+      const observer = new MutationObserver(() => {
+        createParticles(document.documentElement.classList.contains('dark'));
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    </script>
+    <style is:inline>
+      body {
+        transition: background 0.5s;
+      }
+      body.dark {
+        background: linear-gradient(135deg, #181022 0%, #2a133d 100%) !important;
+      }
+      @keyframes particleFloat {
+        0% { transform: translateY(0) scale(1); }
+        100% { transform: translateY(-40px) scale(1.15); }
+      }
+      @keyframes floatShape {
+        0% { transform: translateY(0) scale(1) rotate(0deg); }
+        100% { transform: translateY(-60px) scale(1.08) rotate(8deg); }
+      }
+      #global-particles-bg div:hover, #global-light-bg div:hover {
+        filter: brightness(1.5);
+      }
+      #global-light-bg {
+        position: fixed;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        transition: opacity 0.5s;
+      }
+    </style>
   </body>
 </html>
 

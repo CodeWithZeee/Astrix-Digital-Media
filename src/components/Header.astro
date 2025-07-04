@@ -1,13 +1,13 @@
 ---
 ---
 
-<header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300">
+<header class="fixed top-0 w-full bg-white/70 dark:bg-[rgba(83,24,138,0.92)] backdrop-blur-xl shadow-2xl z-50 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center">
-                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto">
+                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto logo-img">
         </a>
       </div>
 
@@ -27,13 +27,22 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute right-0 mt-2 w-48 bg-white/90 dark:bg-[rgba(36,0,70,0.96)] rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="py-1">
-              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Policy</a>
-              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Terms of Service</a>
+              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-600/90 hover:text-white dark:hover:bg-[rgba(94,0,255,0.85)] dark:hover:text-white">Privacy Policy</a>
+              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-600/90 hover:text-white dark:hover:bg-[rgba(94,0,255,0.85)] dark:hover:text-white">Terms of Service</a>
             </div>
           </div>
         </div>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" aria-label="Toggle dark mode" class="ml-4 flex items-center justify-center w-14 h-8 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 border-2 border-primary-600 relative shadow-lg transition-colors duration-300 focus:outline-none overflow-hidden">
+          <span id="theme-toggle-knob" class="absolute left-1 top-1 w-6 h-6 rounded-full bg-white shadow-lg ring-2 ring-primary-400 transition-transform duration-300 flex items-center justify-center">
+            <svg id="theme-toggle-icon" class="w-4 h-4 text-yellow-400 transition-all duration-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 15.5A5.5 5.5 0 1010 4.5a7 7 0 000 11z" />
+            </svg>
+          </span>
+          <span class="sr-only">Toggle dark mode</span>
+        </button>
       </div>
 
       <!-- Mobile menu button -->
@@ -92,5 +101,77 @@
       link.removeEventListener('click', handleAnchorClick);
       link.addEventListener('click', handleAnchorClick);
     });
+
+    // Theme toggle logic
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    const knob = document.getElementById('theme-toggle-knob');
+    const icon = document.getElementById('theme-toggle-icon');
+    // Set initial state from localStorage
+    function setDarkModeUI(isDark) {
+      if (isDark) {
+        knob.style.transform = 'translateX(28px)';
+        themeToggle.classList.add('from-gray-800', 'to-gray-900', 'border-gray-700');
+        themeToggle.classList.remove('from-primary-500', 'to-accent-500', 'border-primary-600');
+        knob.classList.add('ring-accent-500');
+        icon.innerHTML = '<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />';
+        icon.classList.remove('text-yellow-400');
+        icon.classList.add('text-blue-400');
+      } else {
+        knob.style.transform = 'translateX(0)';
+        themeToggle.classList.add('from-primary-500', 'to-accent-500', 'border-primary-600');
+        themeToggle.classList.remove('from-gray-800', 'to-gray-900', 'border-gray-700');
+        knob.classList.remove('ring-accent-500');
+        icon.innerHTML = '<path d="M10 15.5A5.5 5.5 0 1010 4.5a7 7 0 000 11z" />';
+        icon.classList.add('text-yellow-400');
+        icon.classList.remove('text-blue-400');
+      }
+    }
+    const isDarkInit = localStorage.getItem('theme') === 'dark';
+    if (isDarkInit) {
+      html.classList.add('dark');
+    }
+    setDarkModeUI(isDarkInit);
+    themeToggle?.addEventListener('click', function() {
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      setDarkModeUI(isDark);
+    });
   });
 </script>
+
+<style is:inline>
+#theme-toggle {
+  min-width: 56px;
+  min-height: 32px;
+  box-shadow: 0 4px 16px 0 rgba(139,92,246,0.12), 0 1.5px 6px 0 rgba(14,165,233,0.10);
+  border-width: 2px;
+}
+#theme-toggle-knob {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+}
+#theme-toggle:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+#theme-toggle .ring-accent-500 {
+  box-shadow: 0 0 0 3px #8b5cf6;
+}
+#theme-toggle:hover {
+  filter: brightness(1.08) drop-shadow(0 0 8px #8b5cf6aa);
+}
+.dark\:to-\[rgba\(94\,0\,255\,0\.80\)\]:is(.dark *) {
+  --tw-gradient-to: rgb(112 83 161 / 80%) var(--tw-gradient-to-position);
+}
+.dark header, .dark header * {
+  color: #cd98ee !important;
+  fill: #cd98ee !important;
+}
+.dark .logo-img {
+  filter: invert(1) contrast(5.5) !important;
+}
+.logo-img {
+  filter: contrast(5.5);
+}
+</style>
