@@ -55,10 +55,34 @@
             </div>
           </div>
         </div>
+        
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <div class="toggle-track">
+            <div class="toggle-thumb">
+              <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+              <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+            </div>
+          </div>
+        </button>
       </div>
 
       <!-- Mobile menu button -->
-      <div class="md:hidden">
+      <div class="md:hidden flex items-center space-x-4">
+        <!-- Mobile Theme Toggle -->
+        <button id="mobile-theme-toggle" class="theme-toggle-btn-mobile" aria-label="Toggle theme">
+          <svg class="sun-icon-mobile" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <svg class="moon-icon-mobile" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+        
         <button type="button" class="mobile-menu-button nav-link focus:outline-none">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -182,6 +206,88 @@
     background: rgba(59, 130, 246, 0.1);
   }
 
+  /* Theme Toggle Styles */
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .theme-toggle-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .toggle-track {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .sun-icon, .moon-icon {
+    width: 10px;
+    height: 10px;
+    color: #667eea;
+    transition: all 0.3s ease;
+  }
+
+  .moon-icon {
+    opacity: 0;
+    position: absolute;
+  }
+
+  /* Mobile theme toggle */
+  .theme-toggle-btn-mobile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sun-icon-mobile, .moon-icon-mobile {
+    width: 18px;
+    height: 18px;
+    color: #4b5563;
+    transition: all 0.3s ease;
+  }
+
+  .moon-icon-mobile {
+    opacity: 0;
+    position: absolute;
+  }
+
   /* Dark theme styles */
   [data-theme="dark"] .header-bg {
     background: rgba(17, 24, 39, 0.9);
@@ -235,16 +341,67 @@
     color: #06b6d4;
     background: rgba(6, 182, 212, 0.2);
   }
+
+  /* Dark theme toggle styles */
+  [data-theme="dark"] .toggle-track {
+    background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  }
+
+  [data-theme="dark"] .toggle-thumb {
+    transform: translateX(18px);
+    background: #1f2937;
+  }
+
+  [data-theme="dark"] .sun-icon {
+    opacity: 0;
+  }
+
+  [data-theme="dark"] .moon-icon {
+    opacity: 1;
+    color: #0ea5e9;
+  }
+
+  [data-theme="dark"] .sun-icon-mobile {
+    opacity: 0;
+  }
+
+  [data-theme="dark"] .moon-icon-mobile {
+    opacity: 1;
+    color: #06b6d4;
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const mobileMenu = document.querySelector('.mobile-menu');
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const body = document.body;
 
+    // Mobile menu functionality
     mobileMenuButton?.addEventListener('click', function() {
       mobileMenu?.classList.toggle('hidden');
     });
+
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+
+    // Theme toggle functionality
+    function toggleTheme() {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // Trigger custom event for theme change
+      window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: newTheme } }));
+    }
+
+    themeToggle?.addEventListener('click', toggleTheme);
+    mobileThemeToggle?.addEventListener('click', toggleTheme);
 
     // Smooth scroll for navbar anchor links
     function handleAnchorClick(e) {

@@ -9,7 +9,6 @@ import CaseStudies from '../components/CaseStudies.astro';
 import Pricing from '../components/Pricing.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
 import LightBackground from '../components/LightBackground.astro';
 import DarkBackground from '../components/DarkBackground.astro';
 ---
@@ -19,26 +18,43 @@ import DarkBackground from '../components/DarkBackground.astro';
   <LightBackground />
   <DarkBackground />
   
-  <!-- Theme Toggle -->
-  <ThemeToggle />
-  
   <Header />
   <main>
     <Hero />
-    <ValueProposition />
-    <Features />
-    <HowItWorks />
-    <CaseStudies />
-    <Pricing />
-    <Contact />
-    <section id="privacy-policy" class="py-20 section-bg">
+    
+    <section class="section-wrapper">
+      <ValueProposition />
+    </section>
+    
+    <section class="section-wrapper">
+      <Features />
+    </section>
+    
+    <section class="section-wrapper">
+      <HowItWorks />
+    </section>
+    
+    <section class="section-wrapper">
+      <CaseStudies />
+    </section>
+    
+    <section class="section-wrapper">
+      <Pricing />
+    </section>
+    
+    <section class="section-wrapper">
+      <Contact />
+    </section>
+    
+    <section id="privacy-policy" class="py-20 section-wrapper">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 class="text-3xl font-bold section-title mb-4">Privacy Policy</h2>
         <p class="text-lg section-text mb-6">Learn how we protect your data and privacy as you use our platform.</p>
         <a href="/privacy-policy" class="inline-block section-cta">Read Full Policy</a>
       </div>
     </section>
-    <section id="terms-of-service" class="py-20 section-bg-alt">
+    
+    <section id="terms-of-service" class="py-20 section-wrapper">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 class="text-3xl font-bold section-title mb-4">Terms of Service</h2>
         <p class="text-lg section-text mb-6">Understand the rules and conditions for using Astrix Digital Media.</p>
@@ -50,19 +66,13 @@ import DarkBackground from '../components/DarkBackground.astro';
 </Layout>
 
 <style>
+  /* Section wrapper for consistent styling */
+  .section-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
   /* Light theme styles */
-  .section-bg {
-    background: rgba(249, 250, 251, 0.8);
-    backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
-  }
-
-  .section-bg-alt {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
-  }
-
   .section-title {
     color: #1f2937;
     transition: color 0.5s ease;
@@ -90,14 +100,6 @@ import DarkBackground from '../components/DarkBackground.astro';
   }
 
   /* Dark theme styles */
-  [data-theme="dark"] .section-bg {
-    background: rgba(17, 24, 39, 0.8);
-  }
-
-  [data-theme="dark"] .section-bg-alt {
-    background: rgba(31, 41, 55, 0.8);
-  }
-
   [data-theme="dark"] .section-title {
     color: white;
   }
