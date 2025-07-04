@@ -1,36 +1,57 @@
 ---
 ---
 
-<header class="fixed top-0 w-full bg-white/70 dark:bg-[rgba(83,24,138,0.92)] backdrop-blur-xl shadow-2xl z-50 transition-all duration-300">
+<header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50 transition-all duration-300">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center">
-                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto logo-img">
+                      <img src="/66d62af184ef29605ce0562c.png" alt="Astrix Digital Media" class="h-12 w-auto">
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#how-it-works" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">How It Works</a>
-        <a href="#features" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Features</a>
-        <a href="#pricing" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Pricing</a>
-        <a href="#case-studies" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Case Studies</a>
-        <a href="#blog" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Blog</a>
-        <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Contact</a>
-        <a href="/login" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Login</a>
+        <a href="#how-it-works" class="relative nav-link group">
+          How It Works
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#features" class="relative nav-link group">
+          Features
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#pricing" class="relative nav-link group">
+          Pricing
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#case-studies" class="relative nav-link group">
+          Case Studies
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#blog" class="relative nav-link group">
+          Blog
+          <span class="nav-underline"></span>
+        </a>
+        <a href="#contact" class="relative nav-link group">
+          Contact
+          <span class="nav-underline"></span>
+        </a>
+        <a href="/login" class="relative nav-link group">
+          Login
+          <span class="nav-underline"></span>
+        </a>
         <div class="relative group">
-          <button class="text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center">
+          <button class="nav-link flex items-center">
             Legal
             <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          <div class="absolute right-0 mt-2 w-48 bg-white/90 dark:bg-[rgba(36,0,70,0.96)] rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="py-1">
-              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-600/90 hover:text-white dark:hover:bg-[rgba(94,0,255,0.85)] dark:hover:text-white">Privacy Policy</a>
-              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-600/90 hover:text-white dark:hover:bg-[rgba(94,0,255,0.85)] dark:hover:text-white">Terms of Service</a>
+              <a href="#privacy-policy" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Policy</a>
+              <a href="#terms-of-service" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -47,7 +68,7 @@
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button type="button" class="mobile-menu-button text-gray-600 hover:text-gray-900 focus:outline-none">
+        <button type="button" class="mobile-menu-button nav-link focus:outline-none">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -57,20 +78,173 @@
 
     <!-- Mobile Navigation -->
     <div class="mobile-menu hidden md:hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-100">
-        <a href="#how-it-works" class="block px-3 py-2 text-gray-600 hover:text-primary-600">How It Works</a>
-        <a href="#features" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Features</a>
-        <a href="#pricing" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Pricing</a>
-        <a href="#case-studies" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Case Studies</a>
-        <a href="#blog" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Blog</a>
-        <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Contact</a>
-        <a href="/login" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Login</a>
-        <a href="/privacy-policy" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Privacy Policy</a>
-        <a href="/terms-of-service" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Terms of Service</a>
+      <div class="mobile-menu-content">
+        <a href="#how-it-works" class="mobile-nav-item">How It Works</a>
+        <a href="#features" class="mobile-nav-item">Features</a>
+        <a href="#pricing" class="mobile-nav-item">Pricing</a>
+        <a href="#case-studies" class="mobile-nav-item">Case Studies</a>
+        <a href="#blog" class="mobile-nav-item">Blog</a>
+        <a href="#contact" class="mobile-nav-item">Contact</a>
+        <a href="/login" class="mobile-nav-item">Login</a>
+        <a href="/privacy-policy" class="mobile-nav-item">Privacy Policy</a>
+        <a href="/terms-of-service" class="mobile-nav-item">Terms of Service</a>
       </div>
     </div>
   </nav>
 </header>
+
+<style>
+  /* Light theme styles */
+  .header-bg {
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.5s ease;
+  }
+
+  .header-border {
+    border-color: rgba(229, 231, 235, 0.8);
+    transition: border-color 0.5s ease;
+  }
+
+  .logo-filter {
+    filter: none;
+    transition: filter 0.5s ease;
+  }
+
+  .nav-link {
+    color: #4b5563;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #3b82f6;
+  }
+
+  .nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    transition: width 0.3s ease;
+  }
+
+  .group:hover .nav-underline {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 12rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .group:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+
+  .mobile-menu-content {
+    padding: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(229, 231, 235, 0.8);
+    transition: all 0.5s ease;
+  }
+
+  .mobile-nav-item {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: #4b5563;
+    transition: all 0.3s ease;
+    border-radius: 0.375rem;
+    text-decoration: none;
+  }
+
+  .mobile-nav-item:hover {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  /* Dark theme styles */
+  [data-theme="dark"] .header-bg {
+    background: rgba(17, 24, 39, 0.9);
+  }
+
+  [data-theme="dark"] .header-border {
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+
+  [data-theme="dark"] .logo-filter {
+    filter: brightness(0) invert(1);
+  }
+
+  [data-theme="dark"] .nav-link {
+    color: #d1d5db;
+  }
+
+  [data-theme="dark"] .nav-link:hover {
+    color: #06b6d4;
+  }
+
+  [data-theme="dark"] .nav-underline {
+    background: linear-gradient(90deg, #06b6d4, #0284c7);
+  }
+
+  [data-theme="dark"] .dropdown-menu {
+    background: rgba(17, 24, 39, 0.95);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  [data-theme="dark"] .dropdown-item {
+    color: #d1d5db;
+  }
+
+  [data-theme="dark"] .dropdown-item:hover {
+    background: rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+  }
+
+  [data-theme="dark"] .mobile-menu-content {
+    background: rgba(17, 24, 39, 0.95);
+    border-top: 1px solid rgba(6, 182, 212, 0.3);
+  }
+
+  [data-theme="dark"] .mobile-nav-item {
+    color: #d1d5db;
+  }
+
+  [data-theme="dark"] .mobile-nav-item:hover {
+    color: #06b6d4;
+    background: rgba(6, 182, 212, 0.2);
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -81,7 +255,7 @@
       mobileMenu?.classList.toggle('hidden');
     });
 
-    // Smooth scroll for navbar anchor links (works after visiting any section)
+    // Smooth scroll for navbar anchor links
     function handleAnchorClick(e) {
       const href = this.getAttribute('href');
       if (href && href.startsWith('#')) {

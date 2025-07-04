@@ -1,0 +1,444 @@
+---
+---
+
+<div class="dark-background">
+  <!-- Floating geometric shapes -->
+  <div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+    <div class="shape shape-5"></div>
+    <div class="shape shape-6"></div>
+  </div>
+
+  <!-- Animated grid -->
+  <div class="grid-overlay">
+    <div class="grid-lines"></div>
+  </div>
+
+  <!-- Particle system -->
+  <div class="particles">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+    <div class="particle particle-7"></div>
+    <div class="particle particle-8"></div>
+  </div>
+
+  <!-- Glowing orbs -->
+  <div class="glowing-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Circuit patterns -->
+  <div class="circuit-patterns">
+    <div class="circuit circuit-1">
+      <div class="node"></div>
+      <div class="connection"></div>
+    </div>
+    <div class="circuit circuit-2">
+      <div class="node"></div>
+      <div class="connection"></div>
+    </div>
+    <div class="circuit circuit-3">
+      <div class="node"></div>
+      <div class="connection"></div>
+    </div>
+  </div>
+
+  <!-- Data streams -->
+  <div class="data-streams">
+    <div class="stream stream-1">
+      <span class="bit">1</span>
+      <span class="bit">0</span>
+      <span class="bit">1</span>
+      <span class="bit">1</span>
+    </div>
+    <div class="stream stream-2">
+      <span class="bit">0</span>
+      <span class="bit">1</span>
+      <span class="bit">0</span>
+      <span class="bit">1</span>
+    </div>
+    <div class="stream stream-3">
+      <span class="bit">1</span>
+      <span class="bit">1</span>
+      <span class="bit">0</span>
+      <span class="bit">0</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dark-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  [data-theme="dark"] .dark-background {
+    opacity: 1;
+  }
+
+  /* Floating geometric shapes */
+  .floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .shape {
+    position: absolute;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    background: rgba(14, 165, 233, 0.05);
+    backdrop-filter: blur(10px);
+  }
+
+  .shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    transform: rotate(45deg);
+    animation: float-rotate 20s infinite linear;
+  }
+
+  .shape-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    border-radius: 50%;
+    animation: float-pulse 15s infinite ease-in-out;
+  }
+
+  .shape-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 20%;
+    left: 20%;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: float-bounce 18s infinite ease-in-out;
+  }
+
+  .shape-4 {
+    width: 120px;
+    height: 40px;
+    top: 30%;
+    right: 30%;
+    border-radius: 20px;
+    animation: float-slide 25s infinite linear;
+  }
+
+  .shape-5 {
+    width: 70px;
+    height: 70px;
+    bottom: 40%;
+    right: 10%;
+    transform: rotate(30deg);
+    animation: float-rotate-reverse 22s infinite linear;
+  }
+
+  .shape-6 {
+    width: 90px;
+    height: 90px;
+    top: 70%;
+    left: 60%;
+    border-radius: 20px;
+    animation: float-drift 30s infinite ease-in-out;
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+  }
+
+  .grid-lines {
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(14, 165, 233, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 165, 233, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s infinite linear;
+  }
+
+  /* Particles */
+  .particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #0ea5e9;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0ea5e9;
+  }
+
+  .particle-1 { top: 20%; left: 15%; animation: particle-float 12s infinite ease-in-out; }
+  .particle-2 { top: 50%; left: 80%; animation: particle-float 15s infinite ease-in-out 2s; }
+  .particle-3 { top: 80%; left: 30%; animation: particle-float 18s infinite ease-in-out 4s; }
+  .particle-4 { top: 30%; left: 70%; animation: particle-float 14s infinite ease-in-out 1s; }
+  .particle-5 { top: 70%; left: 10%; animation: particle-float 16s infinite ease-in-out 3s; }
+  .particle-6 { top: 10%; left: 60%; animation: particle-float 13s infinite ease-in-out 5s; }
+  .particle-7 { top: 60%; left: 50%; animation: particle-float 17s infinite ease-in-out 2.5s; }
+  .particle-8 { top: 40%; left: 25%; animation: particle-float 19s infinite ease-in-out 1.5s; }
+
+  /* Glowing orbs */
+  .glowing-orbs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+  }
+
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 10%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(14, 165, 233, 0.1) 50%, transparent 70%);
+    animation: orb-pulse 8s infinite ease-in-out;
+  }
+
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    left: 15%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+    animation: orb-pulse 10s infinite ease-in-out 3s;
+  }
+
+  .orb-3 {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0.1) 50%, transparent 70%);
+    animation: orb-pulse 12s infinite ease-in-out 6s;
+  }
+
+  /* Circuit patterns */
+  .circuit-patterns {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .circuit {
+    position: absolute;
+  }
+
+  .circuit-1 {
+    top: 15%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+  }
+
+  .circuit-2 {
+    bottom: 25%;
+    left: 5%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .circuit-3 {
+    top: 50%;
+    right: 40%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .node {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00ff88;
+    animation: node-pulse 3s infinite ease-in-out;
+  }
+
+  .connection {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, #00ff88, transparent);
+    animation: connection-flow 2s infinite ease-in-out;
+  }
+
+  /* Data streams */
+  .data-streams {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .stream {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+  }
+
+  .stream-1 {
+    top: 40%;
+    left: 80%;
+    flex-direction: column;
+    animation: stream-flow-vertical 6s infinite linear;
+  }
+
+  .stream-2 {
+    top: 60%;
+    left: 10%;
+    flex-direction: row;
+    animation: stream-flow-horizontal 8s infinite linear;
+  }
+
+  .stream-3 {
+    top: 20%;
+    left: 50%;
+    flex-direction: column;
+    animation: stream-flow-vertical 10s infinite linear 3s;
+  }
+
+  .bit {
+    color: #0ea5e9;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    text-shadow: 0 0 10px #0ea5e9;
+    animation: bit-flicker 1s infinite ease-in-out;
+  }
+
+  /* Animations */
+  @keyframes float-rotate {
+    0% { transform: rotate(45deg) translateY(0px); }
+    50% { transform: rotate(225deg) translateY(-20px); }
+    100% { transform: rotate(405deg) translateY(0px); }
+  }
+
+  @keyframes float-rotate-reverse {
+    0% { transform: rotate(30deg) translateY(0px); }
+    50% { transform: rotate(-150deg) translateY(-15px); }
+    100% { transform: rotate(-330deg) translateY(0px); }
+  }
+
+  @keyframes float-pulse {
+    0%, 100% { transform: scale(1) translateY(0px); opacity: 0.7; }
+    50% { transform: scale(1.2) translateY(-30px); opacity: 1; }
+  }
+
+  @keyframes float-bounce {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(90deg); }
+    50% { transform: translateY(-40px) rotate(180deg); }
+    75% { transform: translateY(-20px) rotate(270deg); }
+  }
+
+  @keyframes float-slide {
+    0% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(-50px) translateY(-20px); }
+    50% { transform: translateX(-100px) translateY(0px); }
+    75% { transform: translateX(-50px) translateY(20px); }
+    100% { transform: translateX(0px) translateY(0px); }
+  }
+
+  @keyframes float-drift {
+    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+  }
+
+  @keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  @keyframes particle-float {
+    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+    25% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+    50% { transform: translateY(-200px) translateX(-30px); opacity: 0.8; }
+    75% { transform: translateY(-100px) translateX(-80px); opacity: 0.6; }
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+  }
+
+  @keyframes node-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.5); opacity: 1; }
+  }
+
+  @keyframes connection-flow {
+    0% { opacity: 0; transform: scaleX(0); }
+    50% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0); }
+  }
+
+  @keyframes stream-flow-vertical {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes stream-flow-horizontal {
+    0% { transform: translateX(0px); opacity: 1; }
+    100% { transform: translateX(100vw); opacity: 0; }
+  }
+
+  @keyframes bit-flicker {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .shape {
+      transform: scale(0.7);
+    }
+    
+    .orb {
+      transform: scale(0.6);
+    }
+    
+    .grid-lines {
+      background-size: 30px 30px;
+    }
+    
+    .circuit {
+      transform: scale(0.7);
+    }
+    
+    .bit {
+      font-size: 10px;
+    }
+  }
+</style>
