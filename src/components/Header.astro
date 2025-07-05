@@ -19,7 +19,8 @@
         <a href="#case-studies" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Case Studies</a>
         <a href="#blog" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Blog</a>
         <a href="#contact" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Contact</a>
-        <a href="/login" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Login</a>
+        <a href="/login" id="login-link" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">Login</a>
+        <a href="#" id="logout-link" class="text-gray-600 hover:text-primary-600 transition-colors duration-200 hidden">Logout</a>
         <div class="relative group">
           <button class="text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center">
             Legal
@@ -64,7 +65,8 @@
         <a href="#case-studies" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Case Studies</a>
         <a href="#blog" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Blog</a>
         <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Contact</a>
-        <a href="/login" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Login</a>
+        <a href="/login" id="mobile-login-link" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Login</a>
+        <a href="#" id="mobile-logout-link" class="block px-3 py-2 text-gray-600 hover:text-primary-600 hidden">Logout</a>
         <a href="/privacy-policy" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Privacy Policy</a>
         <a href="/terms-of-service" class="block px-3 py-2 text-gray-600 hover:text-primary-600">Terms of Service</a>
       </div>
@@ -137,6 +139,48 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       setDarkModeUI(isDark);
     });
+
+    // Authentication logic
+    function updateAuthUI() {
+      const isLoggedIn = !!localStorage.getItem('authToken');
+      const loginLink = document.getElementById('login-link');
+      const logoutLink = document.getElementById('logout-link');
+      const mobileLoginLink = document.getElementById('mobile-login-link');
+      const mobileLogoutLink = document.getElementById('mobile-logout-link');
+
+      if (isLoggedIn) {
+        loginLink?.classList.add('hidden');
+        logoutLink?.classList.remove('hidden');
+        mobileLoginLink?.classList.add('hidden');
+        mobileLogoutLink?.classList.remove('hidden');
+      } else {
+        loginLink?.classList.remove('hidden');
+        logoutLink?.classList.add('hidden');
+        mobileLoginLink?.classList.remove('hidden');
+        mobileLogoutLink?.classList.add('hidden');
+      }
+    }
+
+    // Logout functionality
+    function handleLogout() {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      updateAuthUI();
+      window.location.href = '/';
+    }
+
+    document.getElementById('logout-link')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      handleLogout();
+    });
+
+    document.getElementById('mobile-logout-link')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      handleLogout();
+    });
+
+    // Update UI on page load
+    updateAuthUI();
   });
 </script>
 

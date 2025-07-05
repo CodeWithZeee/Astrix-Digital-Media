@@ -85,6 +85,24 @@ import DarkBackground from '../components/DarkBackground.astro';
     box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   }
 
+  /* Light theme text color for text-center mb-16 */
+  .text-center.mb-16 h2.text-gray-900 {
+    color: black !important;
+  }
+  
+  .text-center.mb-16 p.text-gray-600 {
+    color: black !important;
+  }
+
+  /* Dark theme overrides - keep original colors */
+  [data-theme="dark"] .text-center.mb-16 h2.text-gray-900 {
+    color: white !important;
+  }
+  
+  [data-theme="dark"] .text-center.mb-16 p.text-gray-600 {
+    color: #d1d5db !important;
+  }
+
   /* Dark theme styles */
   [data-theme="dark"] .section-bg {
     background: rgba(17, 24, 39, 0.8);
@@ -110,5 +128,4 @@ import DarkBackground from '../components/DarkBackground.astro';
   [data-theme="dark"] .section-cta:hover {
     box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
   }
-</style>
-<!-- huhuhuhuh -->
+</style> 
