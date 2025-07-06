@@ -111,6 +111,115 @@ const { title, description = "AI Growth Infrastructure for Business Development"
         transition: opacity 0.5s;
       }
     </style>
+
+    <!--  -->
+<!-- Chatbot Widget Start -->
+<style>
+  #astrix-chatbot-btn {
+    position: fixed; bottom: 32px; right: 32px; z-index: 1000;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #F5A623; color: #fff; border: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 28px;
+    transition: background 0.3s;
+  }
+  #astrix-chatbot-popup {
+    display: none; position: fixed; bottom: 100px; right: 32px; z-index: 1001;
+    width: 320px; max-width: 90vw; background: #fff; border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18); overflow: hidden;
+    flex-direction: column;
+    transition: background 0.3s, color 0.3s;
+  }
+  #astrix-chatbot-popup.open { display: flex; }
+  #astrix-chatbot-header {
+    background: #F5A623; color: #fff; padding: 16px; font-weight: bold;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.3s, color 0.3s;
+  }
+  #astrix-chatbot-messages { flex: 1; padding: 16px; overflow-y: auto; }
+  #astrix-chatbot-input-area { display: flex; border-top: 1px solid #eee; }
+  #astrix-chatbot-input {
+    flex: 1; border: none; padding: 12px; outline: none;
+    background: transparent; color: #222;
+    transition: color 0.3s;
+  }
+  #astrix-chatbot-send {
+    background: #F5A623; color: #fff; border: none; padding: 0 16px; cursor: pointer;
+    transition: background 0.3s;
+  }
+  /* Dark mode styles for chatbot */
+  body.dark #astrix-chatbot-btn {
+    background: #2563eb; /* blue-600 */
+    color: #fff;
+  }
+  body.dark #astrix-chatbot-popup {
+    background: #18181b; /* zinc-900 */
+    color: #f3f4f6;
+  }
+  body.dark #astrix-chatbot-header {
+    background: #2563eb; /* blue-600 */
+    color: #fff;
+  }
+  body.dark #astrix-chatbot-input {
+    color: #f3f4f6;
+  }
+  body.dark #astrix-chatbot-send {
+    background: #2563eb;
+    color: #fff;
+  }
+</style>
+  <button id="astrix-chatbot-btn" aria-label="Open chat">
+    <svg width="28" height="28" fill="white" viewBox="0 0 24 24">
+      <path d="M12 3C7.03 3 3 6.58 3 11c0 1.61.62 3.09 1.69 4.36L3 21l5.04-1.67C9.34 19.77 10.65 20 12 20c4.97 0 9-3.58 9-8s-4.03-8-9-8z"/>
+    </svg>
+  </button>
+  <div id="astrix-chatbot-popup">
+    <div id="astrix-chatbot-header">
+      <img src="/AI_Chatbot.jpg" alt="AI Chatbot" style="width:32px;height:32px;border-radius:50%;margin-right:8px;" />
+      <span style="font-weight:bold;">AI Chatbot</span>
+      <button onclick="document.getElementById('astrix-chatbot-popup').classList.remove('open')" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
+    </div>
+    <div id="astrix-chatbot-messages">
+      <div style="margin-bottom:8px;">Hi, I can help you get the answers</div>
+    </div>
+    <div id="astrix-chatbot-input-area">
+      <input id="astrix-chatbot-input" type="text" placeholder="Type your message..." />
+      <button id="astrix-chatbot-send">Send</button>
+    </div>
+  </div>
+  <script>
+    const btn = document.getElementById('astrix-chatbot-btn');
+    const popup = document.getElementById('astrix-chatbot-popup');
+    const inputEl = document.getElementById('astrix-chatbot-input');
+    const send = document.getElementById('astrix-chatbot-send');
+    const messages = document.getElementById('astrix-chatbot-messages');
+    btn.onclick = () => popup.classList.toggle('open');
+    send.onclick = () => {
+      if (inputEl && (inputEl as HTMLInputElement).value.trim()) {
+        const userMsg = document.createElement('div');
+        userMsg.textContent = (inputEl as HTMLInputElement).value;
+        userMsg.style.textAlign = 'right';
+        userMsg.style.margin = '8px 0';
+        messages.appendChild(userMsg);
+        // Simulate bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement('div');
+          botMsg.textContent = "Thanks! We'll get back to you soon.";
+          botMsg.style.textAlign = 'left';
+          botMsg.style.margin = '8px 0';
+          messages.appendChild(botMsg);
+          messages.scrollTop = messages.scrollHeight;
+        }, 800);
+        (inputEl as HTMLInputElement).value = '';
+        messages.scrollTop = messages.scrollHeight;
+      }
+    };
+    inputEl && inputEl.addEventListener('keydown', function(e) { if (e && e.key === 'Enter') send.onclick && send.onclick(new MouseEvent('click')); });
+  </script>
+  <!-- Chatbot Widget End -->
+
+    <!--  -->
+
   </body>
 </html>
 
