@@ -36,13 +36,13 @@
           </div>
         </div>
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" aria-label="Toggle dark mode" class="ml-4 flex items-center justify-center w-14 h-8 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 border-2 border-primary-600 relative shadow-lg transition-colors duration-300 focus:outline-none overflow-hidden">
-          <span id="theme-toggle-knob" class="absolute left-1 top-1 w-6 h-6 rounded-full bg-white shadow-lg ring-2 ring-primary-400 transition-transform duration-300 flex items-center justify-center">
-            <svg id="theme-toggle-icon" class="w-4 h-4 text-yellow-400 transition-all duration-300" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 15.5A5.5 5.5 0 1010 4.5a7 7 0 000 11z" />
-            </svg>
-          </span>
-          <span class="sr-only">Toggle dark mode</span>
+        <button id="theme-toggle" aria-label="Toggle theme" class="ml-4 w-10 h-10 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 relative flex items-center justify-center group">
+          <svg id="sun-icon" class="w-4 h-4 text-gray-600 dark:text-gray-400 transition-all duration-200 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <svg id="moon-icon" class="w-4 h-4 text-gray-600 dark:text-gray-400 transition-all duration-200 absolute opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
         </button>
       </div>
 
@@ -107,37 +107,42 @@
     // Theme toggle logic
     const html = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
-    const knob = document.getElementById('theme-toggle-knob');
-    const icon = document.getElementById('theme-toggle-icon');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    
     // Set initial state from localStorage
     function setDarkModeUI(isDark) {
       if (isDark) {
-        knob.style.transform = 'translateX(28px)';
-        themeToggle.classList.add('from-gray-800', 'to-gray-900', 'border-gray-700');
-        themeToggle.classList.remove('from-primary-500', 'to-accent-500', 'border-primary-600');
-        knob.classList.add('ring-accent-500');
-        icon.innerHTML = '<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />';
-        icon.classList.remove('text-yellow-400');
-        icon.classList.add('text-blue-400');
+        sunIcon.style.opacity = '0';
+        sunIcon.style.transform = 'rotate(90deg) scale(0.5)';
+        moonIcon.style.opacity = '1';
+        moonIcon.style.transform = 'rotate(0deg) scale(1)';
       } else {
-        knob.style.transform = 'translateX(0)';
-        themeToggle.classList.add('from-primary-500', 'to-accent-500', 'border-primary-600');
-        themeToggle.classList.remove('from-gray-800', 'to-gray-900', 'border-gray-700');
-        knob.classList.remove('ring-accent-500');
-        icon.innerHTML = '<path d="M10 15.5A5.5 5.5 0 1010 4.5a7 7 0 000 11z" />';
-        icon.classList.add('text-yellow-400');
-        icon.classList.remove('text-blue-400');
+        sunIcon.style.opacity = '1';
+        sunIcon.style.transform = 'rotate(0deg) scale(1)';
+        moonIcon.style.opacity = '0';
+        moonIcon.style.transform = 'rotate(-90deg) scale(0.5)';
       }
     }
+    
     const isDarkInit = localStorage.getItem('theme') === 'dark';
     if (isDarkInit) {
       html.classList.add('dark');
     }
     setDarkModeUI(isDarkInit);
+    
     themeToggle?.addEventListener('click', function() {
+      // Add subtle animation
+      themeToggle.style.animation = 'fadeIn 0.3s ease-in-out';
+      
       const isDark = html.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       setDarkModeUI(isDark);
+      
+      // Remove animation after it completes
+      setTimeout(() => {
+        themeToggle.style.animation = '';
+      }, 300);
     });
 
     // Authentication logic
@@ -186,18 +191,37 @@
 
 <style is:inline>
 #theme-toggle {
-  min-width: 56px;
-  min-height: 32px;
-  box-shadow: 0 4px 16px 0 rgba(139,92,246,0.12), 0 1.5px 6px 0 rgba(14,165,233,0.10);
-  border-width: 2px;
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(8px);
 }
-#theme-toggle-knob {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+
+#theme-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: rgba(255, 255, 255, 0.9);
 }
+
+.dark #theme-toggle:hover {
+  background-color: rgba(31, 41, 55, 0.9);
+}
+
+#theme-toggle:active {
+  transform: translateY(0);
+}
+
+#sun-icon, #moon-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 #theme-toggle:focus-visible {
   outline: 2px solid #8b5cf6;
   outline-offset: 2px;
+}
 }
 #theme-toggle .ring-accent-500 {
   box-shadow: 0 0 0 3px #8b5cf6;
