@@ -137,10 +137,18 @@ import background from '../assets/background.svg';
 	}
 
 	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
+		background: #fff;
+		border: 1.5px solid #e5e7eb;
+		border-radius: 1.25rem;
+		box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+		padding: 2rem 1.5rem;
+		margin-bottom: 2rem;
+		transition: background 0.3s, border 0.3s, color 0.3s;
+	}
+	.box.dark, .dark .box {
+		background: #23272a;
+		border: 1.5px solid #2c2f33;
+		color: #f3f4f6;
 	}
 
 	#news {

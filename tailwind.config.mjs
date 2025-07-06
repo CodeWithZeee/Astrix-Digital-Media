@@ -13,21 +13,21 @@ export default {
           700: "#0369a1",
           900: "#0c4a6e",
           // Dark theme
-          dark: "#2a133d",
-          darkAccent: "#4b206b",
+          dark: "#23272a",
+          darkAccent: "#2c2f33",
         },
         accent: {
-          500: "#8b5cf6",
-          600: "#7c3aed",
+          500: "#23272a",
+          600: "#2c2f33",
           // Dark theme
-          dark: "#a78bfa",
-          darkAccent: "#c4b5fd",
+          dark: "#23272a",
+          darkAccent: "#2c2f33",
         },
         // General dark backgrounds
         darkbg: {
-          900: "#181022",
-          800: "#22143a",
-          700: "#2a133d",
+          900: "#23272a",
+          800: "#23272a",
+          700: "#2c2f33",
         },
       },
       fontFamily: {
