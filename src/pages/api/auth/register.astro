@@ -1,18 +1,8 @@
 ---
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-
-// In a real app, you'd use a database
-// This is a simple in-memory user store for demo purposes
-let users = [
-  {
-    id: 1,
-    email: 'admin@astrix.com',
-    password: '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-    name: 'Admin User',
-    role: 'admin'
-  }
-];
+import { userService, sessionService } from '../../../utils/database.js';
+import { emailService } from '../../../utils/email.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
@@ -30,17 +20,6 @@ export async function POST({ request }) {
       });
     }
 
-    // Check if user already exists
-    const existingUser = users.find(u => u.email === email);
-    if (existingUser) {
-      return new Response(JSON.stringify({ 
-        error: 'User with this email already exists' 
-      }), { 
-        status: 409,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -53,51 +32,71 @@ export async function POST({ request }) {
     }
 
     // Validate password strength
-    if (password.length < 6) {
+    if (password.length < 8) {
       return new Response(JSON.stringify({ 
-        error: 'Password must be at least 6 characters long' 
+        error: 'Password must be at least 8 characters long' 
       }), { 
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
+    // Check for strong password
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+    if (!passwordRegex.test(password)) {
+      return new Response(JSON.stringify({ 
+        error: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character' 
+      }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Check if user already exists
+    const existingUser = userService.findUserByEmail(email);
+    if (existingUser) {
+      return new Response(JSON.stringify({ 
+        error: 'User with this email already exists' 
+      }), { 
+        status: 409,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     // Hash password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
     // Create new user
-    const newUser = {
-      id: users.length + 1,
-      email,
-      password: hashedPassword,
-      name,
-      role: 'user'
-    };
+    const newUser = await userService.createUser({ email, password: hashedPassword, name });
 
-    // Add user to store (in real app, save to database)
-    users.push(newUser);
-
-    // Generate JWT token
-    const token = jwt.sign(
-      { 
-        userId: newUser.id, 
-        email: newUser.email, 
-        role: newUser.role 
-      },
-      JWT_SECRET,
-      { expiresIn: '24h' }
+    // Send verification email
+    const emailSent = await emailService.sendVerificationEmail(
+      email, 
+      name, 
+      newUser.verificationToken
     );
 
-    // Return success response
+    if (!emailSent) {
+      // If email fails, delete the user and return error
+      // Note: In production, you might want to handle this differently
+      return new Response(JSON.stringify({ 
+        error: 'Account created but verification email could not be sent. Please contact support.' 
+      }), { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Return success response (user needs to verify email)
     return new Response(JSON.stringify({
       success: true,
-      token,
+      message: 'Account created successfully! Please check your email to verify your account.',
       user: {
         id: newUser.id,
+        uuid: newUser.uuid,
         email: newUser.email,
         name: newUser.name,
-        role: newUser.role
+        emailVerified: false
       }
     }), {
       status: 201,
@@ -106,6 +105,16 @@ export async function POST({ request }) {
 
   } catch (error) {
     console.error('Registration error:', error);
+    
+    if (error.message === 'User with this email already exists') {
+      return new Response(JSON.stringify({ 
+        error: 'User with this email already exists' 
+      }), { 
+        status: 409,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     return new Response(JSON.stringify({ 
       error: 'Internal server error' 
     }), { 

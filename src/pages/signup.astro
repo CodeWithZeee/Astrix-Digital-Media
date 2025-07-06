@@ -3,75 +3,125 @@
 
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Sign Up | Astrix Digital Media</title>
     <meta name="description" content="Create your Astrix Digital Media account to access AI-powered business tools." />
+    <link rel="icon" type="image/png" href="/Astrix_favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (window as any).tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              }
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body class="min-h-screen bg-gradient-to-br from-white to-gray-100 flex items-center justify-center">
-    <main class="w-full max-w-md p-8 bg-white rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-105">
-      <h1 class="text-2xl font-bold text-center text-primary-600 mb-6">Create Your Account</h1>
+  <body class="min-h-screen bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <main class="w-full max-w-md sm:max-w-lg lg:max-w-xl p-6 sm:p-8 lg:p-10 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-primary-600 dark:text-white mb-6">Create Your Account</h1>
       
       <!-- Error/Success Messages -->
       <div id="message" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
       
       <form id="signupForm" class="space-y-5">
         <div>
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+          <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
           <input 
             type="text" 
             id="name" 
             name="name" 
             required 
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none" 
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white" 
             placeholder="John Doe" 
           />
         </div>
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email address</label>
           <input 
             type="email" 
             id="email" 
             name="email" 
             required 
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none" 
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white" 
             placeholder="you@example.com" 
           />
         </div>
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
           <input 
             type="password" 
             id="password" 
             name="password" 
             required 
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none" 
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white" 
             placeholder="••••••••" 
           />
-          <p class="text-xs text-gray-500 mt-1">Must be at least 6 characters long</p>
+          <div id="passwordRequirements" class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            <p>Password must contain:</p>
+            <ul class="list-disc list-inside space-y-1 mt-1">
+              <li id="length">At least 8 characters</li>
+              <li id="uppercase">One uppercase letter</li>
+              <li id="lowercase">One lowercase letter</li>
+              <li id="number">One number</li>
+              <li id="special">One special character (@$!%*?&)</li>
+            </ul>
+          </div>
         </div>
         <div>
-          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirm Password</label>
           <input 
             type="password" 
             id="confirmPassword" 
             name="confirmPassword" 
             required 
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none" 
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-200 focus:outline-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white" 
             placeholder="••••••••" 
           />
+        </div>
+        <div class="flex items-center">
+          <input 
+            type="checkbox" 
+            id="terms" 
+            name="terms" 
+            required 
+            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+          />
+          <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+            I agree to the <a href="/terms-of-service" class="text-primary-600 dark:text-primary-400 hover:underline">Terms of Service</a> and <a href="/privacy-policy" class="text-primary-600 dark:text-primary-400 hover:underline">Privacy Policy</a>
+          </label>
         </div>
         <button 
           type="submit" 
           id="submitBtn"
-          class="w-full py-2 px-4 bg-primary-600 text-white font-semibold rounded-lg shadow hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full py-3 px-4 bg-primary-600 dark:bg-[#a259ec] text-white font-semibold rounded-lg shadow hover:bg-primary-700 dark:hover:bg-[#9333ea] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span id="btnText">Create Account</span>
           <span id="btnSpinner" class="hidden">Creating account...</span>
         </button>
       </form>
       
-      <p class="mt-6 text-center text-sm text-gray-600">
+      <p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
         Already have an account?
-        <a href="/login" class="text-primary-600 hover:underline">Log in</a>
+        <a href="/login" class="text-primary-600 dark:text-primary-400 hover:underline">Log in</a>
       </p>
     </main>
 
@@ -82,11 +132,34 @@
         const submitBtn = document.getElementById('submitBtn');
         const btnText = document.getElementById('btnText');
         const btnSpinner = document.getElementById('btnSpinner');
+        const password = document.getElementById('password') as HTMLInputElement;
+        const confirmPassword = document.getElementById('confirmPassword') as HTMLInputElement;
 
-        function showMessage(text, type = 'error') {
+        // Password validation
+        function validatePassword(password: string) {
+          const requirements = {
+            length: password.length >= 8,
+            uppercase: /[A-Z]/.test(password),
+            lowercase: /[a-z]/.test(password),
+            number: /\d/.test(password),
+            special: /[@$!%*?&]/.test(password)
+          };
+
+          // Update requirement indicators
+          Object.keys(requirements).forEach(req => {
+            const element = document.getElementById(req);
+            if (element) {
+              element.className = requirements[req] ? 'text-green-600' : 'text-red-600';
+            }
+          });
+
+          return Object.values(requirements).every(Boolean);
+        }
+
+        function showMessage(text: string, type = 'error') {
           messageDiv.textContent = text;
           messageDiv.className = `mb-4 p-3 rounded-lg text-sm ${
-            type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+            type === 'error' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
           }`;
           messageDiv.classList.remove('hidden');
         }
@@ -95,22 +168,36 @@
           messageDiv.classList.add('hidden');
         }
 
-        function setLoading(loading) {
+        function setLoading(loading: boolean) {
           (submitBtn as HTMLButtonElement).disabled = loading;
           btnText.classList.toggle('hidden', loading);
           btnSpinner.classList.toggle('hidden', !loading);
         }
+
+        // Real-time password validation
+        password.addEventListener('input', function() {
+          validatePassword(this.value);
+        });
+
+        // Confirm password validation
+        confirmPassword.addEventListener('input', function() {
+          if (this.value && this.value !== password.value) {
+            this.setCustomValidity('Passwords do not match');
+          } else {
+            this.setCustomValidity('');
+          }
+        });
 
         form.addEventListener('submit', async function(e) {
           e.preventDefault();
           
           const name = (document.getElementById('name') as HTMLInputElement).value.trim();
           const email = (document.getElementById('email') as HTMLInputElement).value.trim();
-          const password = (document.getElementById('password') as HTMLInputElement).value;
-          const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
+          const passwordValue = password.value;
+          const confirmPasswordValue = confirmPassword.value;
 
           // Basic validation
-          if (!name || !email || !password || !confirmPassword) {
+          if (!name || !email || !passwordValue || !confirmPasswordValue) {
             showMessage('Please fill in all fields');
             return;
           }
@@ -120,12 +207,12 @@
             return;
           }
 
-          if (password.length < 6) {
-            showMessage('Password must be at least 6 characters long');
+          if (!validatePassword(passwordValue)) {
+            showMessage('Please ensure your password meets all requirements');
             return;
           }
 
-          if (password !== confirmPassword) {
+          if (passwordValue !== confirmPasswordValue) {
             showMessage('Passwords do not match');
             return;
           }
@@ -139,22 +226,21 @@
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ name, email, password })
+              body: JSON.stringify({ name, email, password: passwordValue })
             });
 
             const data = await response.json();
 
             if (response.ok) {
-              // Store token in localStorage
-              localStorage.setItem('authToken', data.token);
-              localStorage.setItem('user', JSON.stringify(data.user));
+              showMessage('Account created successfully! Please check your email to verify your account.', 'success');
               
-              showMessage('Account created successfully! Redirecting...', 'success');
+              // Clear form
+              (form as HTMLFormElement).reset();
               
-              // Redirect to dashboard or home page
+              // Redirect to login page after a delay
               setTimeout(() => {
-                window.location.href = '/';
-              }, 1000);
+                window.location.href = '/login';
+              }, 3000);
             } else {
               showMessage(data.error || 'Registration failed');
             }
@@ -169,8 +255,8 @@
         // Clear message when user starts typing
         document.getElementById('name').addEventListener('input', hideMessage);
         document.getElementById('email').addEventListener('input', hideMessage);
-        document.getElementById('password').addEventListener('input', hideMessage);
-        document.getElementById('confirmPassword').addEventListener('input', hideMessage);
+        password.addEventListener('input', hideMessage);
+        confirmPassword.addEventListener('input', hideMessage);
       });
     </script>
   </body>
