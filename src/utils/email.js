@@ -1,23 +1,23 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 
 // Email configuration
 const emailConfig = {
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  host: process.env.SMTP_HOST || "smtp.gmail.com",
   port: process.env.SMTP_PORT || 587,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: process.env.SMTP_USER || 'your-email@gmail.com',
-    pass: process.env.SMTP_PASS || 'your-app-password'
-  }
+    user: process.env.SMTP_USER || "your-email@gmail.com",
+    pass: process.env.SMTP_PASS || "your-app-password",
+  },
 };
 
 // Create transporter
-const transporter = nodemailer.createTransporter(emailConfig);
+const transporter = nodemailer.createTransport(emailConfig);
 
 // Email templates
 const emailTemplates = {
   verification: (name, verificationUrl) => ({
-    subject: 'Verify your Astrix account',
+    subject: "Verify your Astrix account",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
@@ -65,11 +65,11 @@ const emailTemplates = {
           <p style="margin: 0;">© 2024 Astrix. All rights reserved.</p>
         </div>
       </div>
-    `
+    `,
   }),
 
   passwordReset: (name, resetUrl) => ({
-    subject: 'Reset your Astrix password',
+    subject: "Reset your Astrix password",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
@@ -116,11 +116,11 @@ const emailTemplates = {
           <p style="margin: 0;">© 2024 Astrix. All rights reserved.</p>
         </div>
       </div>
-    `
+    `,
   }),
 
   welcome: (name) => ({
-    subject: 'Welcome to Astrix!',
+    subject: "Welcome to Astrix!",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center;">
@@ -154,46 +154,50 @@ const emailTemplates = {
           <p style="margin: 0;">© 2024 Astrix. All rights reserved.</p>
         </div>
       </div>
-    `
-  })
+    `,
+  }),
 };
 
 // Email service functions
 export const emailService = {
   // Send verification email
   async sendVerificationEmail(email, name, verificationToken) {
-    const verificationUrl = `${process.env.SITE_URL || 'http://localhost:4321'}/verify-email?token=${verificationToken}`;
+    const verificationUrl = `${
+      process.env.SITE_URL || "http://localhost:4321"
+    }/verify-email?token=${verificationToken}`;
     const template = emailTemplates.verification(name, verificationUrl);
-    
+
     try {
       await transporter.sendMail({
         from: `"Astrix" <${emailConfig.auth.user}>`,
         to: email,
         subject: template.subject,
-        html: template.html
+        html: template.html,
       });
       return true;
     } catch (error) {
-      console.error('Email sending error:', error);
+      console.error("Email sending error:", error);
       return false;
     }
   },
 
   // Send password reset email
   async sendPasswordResetEmail(email, name, resetToken) {
-    const resetUrl = `${process.env.SITE_URL || 'http://localhost:4321'}/reset-password?token=${resetToken}`;
+    const resetUrl = `${
+      process.env.SITE_URL || "http://localhost:4321"
+    }/reset-password?token=${resetToken}`;
     const template = emailTemplates.passwordReset(name, resetUrl);
-    
+
     try {
       await transporter.sendMail({
         from: `"Astrix" <${emailConfig.auth.user}>`,
         to: email,
         subject: template.subject,
-        html: template.html
+        html: template.html,
       });
       return true;
     } catch (error) {
-      console.error('Email sending error:', error);
+      console.error("Email sending error:", error);
       return false;
     }
   },
@@ -201,20 +205,20 @@ export const emailService = {
   // Send welcome email
   async sendWelcomeEmail(email, name) {
     const template = emailTemplates.welcome(name);
-    
+
     try {
       await transporter.sendMail({
         from: `"Astrix" <${emailConfig.auth.user}>`,
         to: email,
         subject: template.subject,
-        html: template.html
+        html: template.html,
       });
       return true;
     } catch (error) {
-      console.error('Email sending error:', error);
+      console.error("Email sending error:", error);
       return false;
     }
-  }
+  },
 };
 
-export default emailService; 
+export default emailService;

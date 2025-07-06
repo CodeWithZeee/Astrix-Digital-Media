@@ -1,8 +1,11 @@
 ---
-import { userService } from '../../../utils/database.js';
+import { userService, initializeDefaultAdmin } from '../../../utils/database.js';
 import { emailService } from '../../../utils/email.js';
 
 export async function POST({ request }) {
+  // Initialize default admin user (only if needed)
+  await initializeDefaultAdmin();
+
   try {
     const { token } = await request.json();
 

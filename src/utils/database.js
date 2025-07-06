@@ -239,28 +239,31 @@ export const sessionService = {
 };
 
 // Initialize with a default admin user if none exists
-const adminUser = userService.findUserByEmail("admin@astrix.com");
-if (!adminUser) {
-  bcrypt.hash("admin123", 12).then((hashedPassword) => {
-    const users = readJsonFile(USERS_FILE);
-    const newAdmin = {
-      id: users.length + 1,
-      uuid: uuidv4(),
-      email: "admin@astrix.com",
-      password: hashedPassword,
-      name: "Admin User",
-      role: "admin",
-      email_verified: true,
-      verification_token: null,
-      reset_token: null,
-      reset_token_expires: null,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-    };
-    users.push(newAdmin);
-    writeJsonFile(USERS_FILE, users);
-    console.log("Default admin user created: admin@astrix.com / admin123");
-  });
+// This will be called when the module is first imported
+export function initializeDefaultAdmin() {
+  const adminUser = userService.findUserByEmail("admin@astrix.com");
+  if (!adminUser) {
+    bcrypt.hash().then((hashedPassword) => {
+      const users = readJsonFile(USERS_FILE);
+      const newAdmin = {
+        id: users.length + 1,
+        uuid: uuidv4(),
+        email: "admin@astrix.com",
+        password: hashedPassword,
+        name: "Admin User",
+        role: "admin",
+        email_verified: true,
+        verification_token: null,
+        reset_token: null,
+        reset_token_expires: null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      users.push(newAdmin);
+      writeJsonFile(USERS_FILE, users);
+      console.log("Default admin user created: admin@astrix.com / admin123");
+    });
+  }
 }
 
 export default { userService, sessionService };
