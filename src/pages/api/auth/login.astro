@@ -1,14 +1,11 @@
 ---
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { userService, sessionService, initializeDefaultAdmin } from '../../../utils/database.js';
+import { userService, sessionService } from '../../../utils/database.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
 export async function POST({ request }) {
-  // Initialize default admin user (only if needed)
-  await initializeDefaultAdmin();
-
   try {
     const { email, password } = await request.json();
 
@@ -109,10 +106,3 @@ export async function POST({ request }) {
 
 
 <!-- Ignore this code -->
-
-
-
-
-
-
-

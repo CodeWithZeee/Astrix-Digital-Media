@@ -1,10 +1,7 @@
 ---
-import { sessionService, initializeDefaultAdmin } from '../../../utils/database.js';
+import { sessionService } from '../../../utils/database.js';
 
 export async function POST({ request }) {
-  // Initialize default admin user (only if needed)
-  await initializeDefaultAdmin();
-
   try {
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.replace('Bearer ', '') || request.cookies.get('auth_token')?.value;
@@ -35,4 +32,4 @@ export async function POST({ request }) {
     });
   }
 }
---- 
+---

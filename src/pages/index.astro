@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import ValueProposition from '../components/ValueProposition.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import CaseStudies from '../components/CaseStudies.astro';
@@ -21,8 +20,20 @@ import DarkBackground from '../components/DarkBackground.astro';
   <Header />
   <main>
     <Hero />
-    <ValueProposition />
     <Features />
+    <!-- Pain Points Section -->
+    <section id="pain-points" class="py-20 bg-gray-50 dark:bg-darkbg-900/90">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Pain Points</h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 mb-6">
+          Most business owners are stuck managing admin tasks, underperforming websites and cold leads — all while everyone keeps talking about AI like it's magic.
+        </p>
+        <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">
+          You don't need more tools.<br />
+          You need a partner who cuts through the hype, takes ownership and builds what actually works for your business.
+        </p>
+      </div>
+    </section>
     <HowItWorks />
     <CaseStudies />
     <Pricing />

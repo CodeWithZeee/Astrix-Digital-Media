@@ -238,12 +238,12 @@ export const sessionService = {
   },
 };
 
-// Initialize with a default admin user if none exists
-// This will be called when the module is first imported
-export function initializeDefaultAdmin() {
+// Function to initialize default admin user - call this explicitly when needed
+export async function initializeDefaultAdmin() {
   const adminUser = userService.findUserByEmail("admin@astrix.com");
   if (!adminUser) {
-    bcrypt.hash().then((hashedPassword) => {
+    try {
+      const hashedPassword = await bcrypt.hash("admin123", 12);
       const users = readJsonFile(USERS_FILE);
       const newAdmin = {
         id: users.length + 1,
@@ -262,7 +262,9 @@ export function initializeDefaultAdmin() {
       users.push(newAdmin);
       writeJsonFile(USERS_FILE, users);
       console.log("Default admin user created: admin@astrix.com / admin123");
-    });
+    } catch (error) {
+      console.error("Error creating default admin user:", error);
+    }
   }
 }
 

@@ -11,29 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      (window as any).tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: {
-                50: '#eff6ff',
-                100: '#dbeafe',
-                200: '#bfdbfe',
-                300: '#93c5fd',
-                400: '#60a5fa',
-                500: '#3b82f6',
-                600: '#2563eb',
-                700: '#1d4ed8',
-                800: '#1e40af',
-                900: '#1e3a8a',
-              }
-            }
-          }
-        }
-      }
-    </script>
   </head>
   <body class="min-h-screen bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
     <main class="w-full max-w-md sm:max-w-lg lg:max-w-xl p-6 sm:p-8 lg:p-10 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
@@ -229,20 +206,39 @@
               body: JSON.stringify({ name, email, password: passwordValue })
             });
 
-            const data = await response.json();
-
+            let data;
+            
+            // Check if response is ok first
             if (response.ok) {
+              // Try to parse as JSON for successful responses
+              try {
+                data = await response.json();
+              } catch (jsonError) {
+                // If JSON parsing fails on successful response, show generic success message
+                showMessage('Account created successfully! Please check your email to verify your account.', 'success');
+                (form as HTMLFormElement).reset();
+                setTimeout(() => {
+                  window.location.href = '/login';
+                }, 3000);
+                return;
+              }
+              
               showMessage('Account created successfully! Please check your email to verify your account.', 'success');
-              
-              // Clear form
               (form as HTMLFormElement).reset();
-              
-              // Redirect to login page after a delay
               setTimeout(() => {
                 window.location.href = '/login';
               }, 3000);
             } else {
-              showMessage(data.error || 'Registration failed');
+              // For error responses, try to parse as JSON first
+              try {
+                data = await response.json();
+                showMessage(data.error || 'Registration failed');
+              } catch (jsonError) {
+                // If JSON parsing fails, it's likely an HTML error page
+                const textResponse = await response.text();
+                console.error('Server returned non-JSON response:', textResponse);
+                showMessage('Registration failed. Please try again.');
+              }
             }
           } catch (error) {
             console.error('Registration error:', error);
@@ -260,4 +256,4 @@
       });
     </script>
   </body>
-</html> 
+</html>
