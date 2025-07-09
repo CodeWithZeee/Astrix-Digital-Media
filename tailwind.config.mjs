@@ -6,23 +6,36 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          900: "#0c4a6e",
-          // Dark theme
-          dark: "#23272a",
-          darkAccent: "#2c2f33",
+          50: "#f5f7fa",
+          100: "#e4e7ec",
+          500: "#a259ec", // premium purple
+          600: "#7c3aed",
+          700: "#312e81",
+          900: "#181022",
+          dark: "#181022",
+          darkAccent: "#23272a",
         },
         accent: {
-          500: "#23272a",
-          600: "#2c2f33",
-          // Dark theme
+          500: "#06b6d4", // cyan
+          600: "#0ea5e9", // blue
           dark: "#23272a",
-          darkAccent: "#2c2f33",
+          darkAccent: "#2a133d",
         },
+        neutral: {
+          50: "#f8fafc",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+          500: "#71717a",
+          600: "#52525b",
+          700: "#3f3f46",
+          800: "#27272a",
+          900: "#181022",
+        },
+        white: "#ffffff",
+        black: "#181022",
+        glass: "rgba(255,255,255,0.08)",
         // General dark backgrounds
         darkbg: {
           900: "#23272a",
@@ -31,7 +44,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Figtree", "Figtree Placeholder", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
@@ -51,6 +64,11 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
+      },
+      boxShadow: {
+        premium: "0 4px 32px 0 rgba(49, 46, 129, 0.10)",
+        glass: "0 8px 32px 0 rgba(31, 41, 55, 0.12)",
+        soft: "0 2px 8px 0 rgba(49, 46, 129, 0.06)",
       },
     },
   },

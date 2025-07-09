@@ -7,6 +7,7 @@ export interface Props {
 const { title, description = "AI Growth Infrastructure for Business Development" } = Astro.props;
 ---
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,9 +21,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   </head>
-  <body class="font-sans antialiased bg-white dark:bg-darkbg-900 transition-colors duration-500">
-    <div id="global-particles-bg" style="position:fixed;z-index:-1;top:0;left:0;width:100vw;height:100vh;pointer-events:none;"></div>
-    <div id="global-light-bg" class="fixed top-0 left-0 w-full h-full z-[-2] pointer-events-none transition-opacity duration-500 dark:hidden"></div>
+  <body class="font-sans antialiased bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500 min-h-screen flex flex-col">
     <slot />
     <script is:inline>
       const bg = document.getElementById('global-particles-bg');
@@ -30,99 +29,9 @@ const { title, description = "AI Growth Infrastructure for Business Development"
       function createParticles(isDark) {
         bg.innerHTML = '';
         if (isDark) {
-          // Enhanced dark mode cosmic animation
+          // Black dark mode, no cosmic/particle backgrounds
           bg.innerHTML = '';
           lightBg.style.display = 'none';
-          
-          // Create multiple layers for depth
-          const layers = [
-            { count: 25, size: [2, 4], opacity: [0.3, 0.6], speed: [8, 12], color: 'rgba(139,92,246,0.4)', glow: 'rgba(139,92,246,0.2)' },
-            { count: 15, size: [4, 8], opacity: [0.4, 0.7], speed: [6, 10], color: 'rgba(168,139,250,0.5)', glow: 'rgba(168,139,250,0.3)' },
-            { count: 8, size: [8, 12], opacity: [0.5, 0.8], speed: [4, 8], color: 'rgba(236,72,153,0.6)', glow: 'rgba(236,72,153,0.4)' }
-          ];
-          
-          layers.forEach((layer, layerIndex) => {
-            for(let i = 0; i < layer.count; i++) {
-              const p = document.createElement('div');
-              const size = Math.random() * (layer.size[1] - layer.size[0]) + layer.size[0];
-              const opacity = Math.random() * (layer.opacity[1] - layer.opacity[0]) + layer.opacity[0];
-              const speed = Math.random() * (layer.speed[1] - layer.speed[0]) + layer.speed[0];
-              const delay = Math.random() * 5;
-              const direction = Math.random() > 0.5 ? 1 : -1;
-              
-              p.style.position = 'absolute';
-              p.style.width = p.style.height = `${size}px`;
-              p.style.borderRadius = '50%';
-              p.style.background = layer.color;
-              p.style.left = `${Math.random() * 100}%`;
-              p.style.top = `${Math.random() * 100}%`;
-              p.style.boxShadow = `0 0 ${size * 2}px ${size/2}px ${layer.glow}`;
-              p.style.opacity = opacity;
-              p.style.animation = `cosmicFloat ${speed}s ease-in-out infinite alternate`;
-              p.style.animationDelay = `${delay}s`;
-              p.style.zIndex = layerIndex;
-              
-              // Add subtle rotation
-              p.style.transform = `rotate(${Math.random() * 360}deg)`;
-              
-              bg.appendChild(p);
-            }
-          });
-          
-          // Add floating geometric shapes for variety
-          const shapes = [
-            { count: 6, size: [20, 40], opacity: [0.1, 0.2], speed: [10, 15], color: 'rgba(59,130,246,0.15)', type: 'circle' },
-            { count: 4, size: [15, 30], opacity: [0.08, 0.15], speed: [12, 18], color: 'rgba(168,85,247,0.12)', type: 'square' }
-          ];
-          
-          shapes.forEach((shapeGroup, groupIndex) => {
-            for(let i = 0; i < shapeGroup.count; i++) {
-              const s = document.createElement('div');
-              const size = Math.random() * (shapeGroup.size[1] - shapeGroup.size[0]) + shapeGroup.size[0];
-              const opacity = Math.random() * (shapeGroup.opacity[1] - shapeGroup.opacity[0]) + shapeGroup.opacity[0];
-              const speed = Math.random() * (shapeGroup.speed[1] - shapeGroup.speed[0]) + shapeGroup.speed[0];
-              const delay = Math.random() * 8;
-              
-              s.style.position = 'absolute';
-              s.style.width = s.style.height = `${size}px`;
-              s.style.borderRadius = shapeGroup.type === 'circle' ? '50%' : '4px';
-              s.style.background = shapeGroup.color;
-              s.style.left = `${Math.random() * 100}%`;
-              s.style.top = `${Math.random() * 100}%`;
-              s.style.opacity = opacity;
-              s.style.filter = 'blur(1px)';
-              s.style.animation = `cosmicShape ${speed}s ease-in-out infinite alternate`;
-              s.style.animationDelay = `${delay}s`;
-              s.style.zIndex = groupIndex + 10;
-              
-              bg.appendChild(s);
-            }
-          });
-          
-          // Add subtle grid lines for depth
-          for(let i = 0; i < 8; i++) {
-            const line = document.createElement('div');
-            line.style.position = 'absolute';
-            line.style.width = '1px';
-            line.style.height = '100vh';
-            line.style.background = 'linear-gradient(to bottom, transparent, rgba(139,92,246,0.1), transparent)';
-            line.style.left = `${(i + 1) * 12.5}%`;
-            line.style.opacity = '0.3';
-            line.style.zIndex = '1';
-            bg.appendChild(line);
-          }
-          
-          for(let i = 0; i < 6; i++) {
-            const line = document.createElement('div');
-            line.style.position = 'absolute';
-            line.style.width = '100vw';
-            line.style.height = '1px';
-            line.style.background = 'linear-gradient(to right, transparent, rgba(139,92,246,0.1), transparent)';
-            line.style.top = `${(i + 1) * 16.67}%`;
-            line.style.opacity = '0.3';
-            line.style.zIndex = '1';
-            bg.appendChild(line);
-          }
         } else {
           // Light mode animated background: floating colored shapes
           bg.innerHTML = '';
@@ -163,7 +72,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
         transition: background 0.5s;
       }
       body.dark {
-        background: linear-gradient(135deg, #181022 0%, #2a133d 100%) !important;
+        background: #18181b !important;
       }
       @keyframes particleFloat {
         0% { transform: translateY(0) scale(1); }
@@ -317,5 +226,9 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   body {
     margin: 0;
     padding: 0;
+  }
+
+  .dark section {
+    background-color: #000 !important;
   }
 </style>

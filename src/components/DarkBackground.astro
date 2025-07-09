@@ -1,79 +1,7 @@
 ---
 ---
 
-<div class="dark-background">
-  <!-- Floating geometric shapes -->
-  <div class="floating-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-    <div class="shape shape-4"></div>
-    <div class="shape shape-5"></div>
-    <div class="shape shape-6"></div>
-  </div>
-
-  <!-- Animated grid -->
-  <div class="grid-overlay">
-    <div class="grid-lines"></div>
-  </div>
-
-  <!-- Particle system -->
-  <div class="particles">
-    <div class="particle particle-1"></div>
-    <div class="particle particle-2"></div>
-    <div class="particle particle-3"></div>
-    <div class="particle particle-4"></div>
-    <div class="particle particle-5"></div>
-    <div class="particle particle-6"></div>
-    <div class="particle particle-7"></div>
-    <div class="particle particle-8"></div>
-  </div>
-
-  <!-- Glowing orbs -->
-  <div class="glowing-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-
-  <!-- Circuit patterns -->
-  <div class="circuit-patterns">
-    <div class="circuit circuit-1">
-      <div class="node"></div>
-      <div class="connection"></div>
-    </div>
-    <div class="circuit circuit-2">
-      <div class="node"></div>
-      <div class="connection"></div>
-    </div>
-    <div class="circuit circuit-3">
-      <div class="node"></div>
-      <div class="connection"></div>
-    </div>
-  </div>
-
-  <!-- Data streams -->
-  <div class="data-streams">
-    <div class="stream stream-1">
-      <span class="bit">1</span>
-      <span class="bit">0</span>
-      <span class="bit">1</span>
-      <span class="bit">1</span>
-    </div>
-    <div class="stream stream-2">
-      <span class="bit">0</span>
-      <span class="bit">1</span>
-      <span class="bit">0</span>
-      <span class="bit">1</span>
-    </div>
-    <div class="stream stream-3">
-      <span class="bit">1</span>
-      <span class="bit">1</span>
-      <span class="bit">0</span>
-      <span class="bit">0</span>
-    </div>
-  </div>
-</div>
+<!-- <div class="dark-background"> ... </div> removed to eliminate any overlay causing purple tint in dark mode -->
 
 <style>
   .dark-background {
@@ -84,7 +12,7 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    background: #18181b;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -231,7 +159,7 @@
     height: 150px;
     bottom: 20%;
     left: 15%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(24, 24, 27, 0.3) 0%, rgba(24, 24, 27, 0.1) 50%, transparent 70%);
     animation: orb-pulse 10s infinite ease-in-out 3s;
   }
 

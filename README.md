@@ -1,5 +1,26 @@
 # Astro Starter Kit: Basics
 
+# Tech Stack
+
+This website is built with a modern, performant, and flexible stack:
+
+- **Astro**: The core framework for building fast, content-focused websites with island architecture.
+- **Tailwind CSS**: Utility-first CSS framework for rapid, responsive UI development.
+- **Alpine.js**: Lightweight JavaScript framework for interactive UI islands (preferred for interactivity).
+- **React**: Used for interactive UI islands/components where needed.
+- **Lottie-web**: For rendering high-quality, lightweight animations in the UI.
+- **Node.js utilities**:
+  - **bcryptjs**: Password hashing for authentication.
+  - **jsonwebtoken**: Secure JWT-based authentication.
+  - **nodemailer**: Sending transactional emails (e.g., verification, password reset).
+  - **uuid**: Generating unique IDs for users and sessions.
+- **Custom Backend**: Simple file-based storage using JSON files for users and sessions (see `src/utils/database.js`).
+
+**Other Notables:**
+- Modern CSS (backdrop blur, gradients, dark mode, etc.)
+- Responsive and accessible design
+- Modular component structure
+
 ```sh
 npm create astro@latest -- --template basics
 ```

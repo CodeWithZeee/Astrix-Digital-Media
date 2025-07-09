@@ -4,7 +4,6 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import CaseStudies from '../components/CaseStudies.astro';
 import Pricing from '../components/Pricing.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
@@ -35,21 +34,61 @@ import DarkBackground from '../components/DarkBackground.astro';
       </div>
     </section>
     <HowItWorks />
-    <CaseStudies />
+    <!-- Who It's For Section -->
+    <section id="who-its-for" class="py-20 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-800">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-sans" style="font-family: 'Figtree', 'Figtree Placeholder', sans-serif;">Who It's For</h2>
+        <p class="text-xl text-neutral-600 dark:text-neutral-300 mb-10 font-sans" style="font-family: 'Figtree', 'Figtree Placeholder', sans-serif; font-weight: 500;">
+          If You're Running a Growing Business, This Was Built for You
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
+          <div class="flex items-center gap-4 justify-center">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-2xl shadow-md">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11V7a3 3 0 116 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="11" width="16" height="6" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Contractors & home service pros</span>
+          </div>
+          <div class="flex items-center gap-4 justify-center">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 text-2xl shadow-md">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M3 21V7a2 2 0 012-2h3V3h4v2h3a2 2 0 012 2v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="7" y="10" width="10" height="8" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Real estate & mortgage teams</span>
+          </div>
+          <div class="flex items-center gap-4 justify-center">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 text-2xl shadow-md">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 21c-4.418 0-8-3.582-8-8 0-3.866 2.613-7.064 6-7.876V3a1 1 0 112 0v2.124C17.387 5.936 20 9.134 20 13c0 4.418-3.582 8-8 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 13h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Medical & dental offices</span>
+          </div>
+          <div class="flex items-center gap-4 justify-center">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 text-2xl shadow-md">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Local agencies & coaches</span>
+          </div>
+          <div class="flex items-center gap-4 justify-center sm:col-span-2">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 text-2xl shadow-md">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M8 17v-1a4 4 0 014-4h0a4 4 0 014 4v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">Any business that relies on leads, calls or client support</span>
+          </div>
+        </div>
+      </div>
+    </section>
     <Pricing />
     <Contact />
     <section id="privacy-policy" class="py-20 bg-white/80 dark:bg-darkbg-900/80 backdrop-blur">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Privacy Policy</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Learn how we protect your data and privacy as you use our platform.</p>
-        <a href="/privacy-policy" class="inline-block bg-primary-600 dark:bg-[#a259ec] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-[#9333ea] transition-colors duration-200">Read Full Policy</a>
+        <a href="/privacy-policy" class="inline-block bg-primary-600 dark:bg-neutral-800 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-neutral-700 transition-colors duration-200">Read Full Policy</a>
       </div>
     </section>
     <section id="terms-of-service" class="py-20 bg-white/80 dark:bg-darkbg-900/80 backdrop-blur">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Terms of Service</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Understand the rules and conditions for using Astrix Digital Media.</p>
-        <a href="/terms-of-service" class="inline-block bg-primary-600 dark:bg-[#a259ec] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-[#9333ea] transition-colors duration-200">Read Full Terms</a>
+        <a href="/terms-of-service" class="inline-block bg-primary-600 dark:bg-neutral-800 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-neutral-700 transition-colors duration-200">Read Full Terms</a>
       </div>
     </section>
   </main>
@@ -138,5 +177,9 @@ import DarkBackground from '../components/DarkBackground.astro';
 
   [data-theme="dark"] .section-cta:hover {
     box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+  }
+
+  .dark #who-its-for {
+    background: #000 !important;
   }
 </style> 
