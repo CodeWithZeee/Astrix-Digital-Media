@@ -21,7 +21,25 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   </head>
-  <body class="font-sans antialiased bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500 min-h-screen flex flex-col">
+  <body class="font-sans antialiased bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500 min-h-screen flex flex-col" style="background:#000 !important;background-image:none !important;">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500">
+      <img src="/Astrix_favicon.png" alt="Astrix" class="w-16 h-16 animate-pulse">
+    </div>
+    
+    <script is:inline>
+      // Hide loading screen when page is loaded
+      window.addEventListener('load', function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }
+      });
+    </script>
+    
     <slot />
     <script is:inline>
       const bg = document.getElementById('global-particles-bg');
@@ -379,6 +397,149 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   body.dark, html.dark, .dark {
     background: #000 !important;
     background-image: none !important;
+  }
+  
+  /* Custom Button CSS from Uiverse.io by adamgiebl */
+  .cssbuttons-io {
+    position: relative;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    border-radius: 0.8em;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    color: #000;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .cssbuttons-io svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+  }
+
+  .cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+  }
+
+  .cssbuttons-io::before,
+  .cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .cssbuttons-io::before {
+    content: "";
+    background: #fff;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+  }
+
+  .cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .cssbuttons-io:active {
+    transform: scale(0.95);
+  }
+  
+  /* Glass morphism pricing cards from Uiverse.io by codebykay101 */
+  .pricing-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .pricing-container .glass {
+    position: relative;
+    width: 280px;
+    height: 400px;
+    background: linear-gradient(#fff2, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    margin: 0 -45px;
+    backdrop-filter: blur(10px);
+    transform: rotate(calc(var(--r) * 1deg));
+  }
+
+  .pricing-container:hover .glass {
+    transform: rotate(0deg);
+    margin: 0 10px;
+  }
+
+  .pricing-container .glass::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .pricing-container .glass svg {
+    font-size: 2.5em;
+    fill: #fff;
+  }
+
+  /* Light theme text colors */
+  .light .pricing-container .glass h3,
+  .light .pricing-container .glass p,
+  .light .pricing-container .glass div,
+  .light .pricing-container .glass li {
+    color: #000 !important;
+  }
+
+  .light .pricing-container .glass::before {
+    color: #000 !important;
+  }
+
+  .light .pricing-container .glass svg {
+    fill: #000 !important;
+  }
+
+  /* Dark theme text colors (unchanged) */
+  .dark .pricing-container .glass h3,
+  .dark .pricing-container .glass p,
+  .dark .pricing-container .glass div,
+  .dark .pricing-container .glass li {
+    color: #fff !important;
+  }
+
+  .dark .pricing-container .glass::before {
+    color: #fff !important;
+  }
+
+  .dark .pricing-container .glass svg {
+    fill: #fff !important;
   }
 </style>
 
