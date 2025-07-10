@@ -458,6 +458,8 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     transform: scale(0.95);
   }
   
+  
+  
   /* Glass morphism pricing cards from Uiverse.io by codebykay101 */
   .pricing-container {
     position: relative;
@@ -479,7 +481,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 10px;
     margin: 0 -45px;
     backdrop-filter: blur(10px);
@@ -541,6 +543,324 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   .dark .pricing-container .glass svg {
     fill: #fff !important;
   }
+
+  /* Pure CSS Shuffling Effect */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+  }
+
+  /* Hide radio buttons */
+  input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .cards {
+    --img-w: 200px;
+    --duration: 300ms;
+    --img-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: min(100% - 4rem, 800px);
+    margin-inline: auto;
+    display: grid;
+    counter-reset: my-counter;
+  }
+
+  .card {
+    --cards-grid-cols: auto;
+    --cards-grid-rows: var(--img-w) auto;
+    --cards-grid-gap: 2rem;
+    --cards-footer-justify: center;
+    
+    grid-area: 1/1;
+    display: grid;
+    place-items: center; 
+    grid-template-columns: var(--cards-grid-cols);
+    grid-template-rows: var(--cards-grid-rows);
+    gap: var(--cards-grid-gap);
+  }
+
+  @media (min-width: 600px) {
+    .card {
+      --cards-grid-cols: var(--img-w) auto;
+      --cards-grid-rows: auto;
+      --cards-grid-gap: 4rem;
+      --cards-footer-justify: start;
+    }
+  }
+
+  .card-img {
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1 / 1;
+    rotate: var(--angle, 0deg);
+    border-radius: 10px;
+    border: 3px solid #FFF;
+    overflow: hidden;
+    transform-origin: center;
+    object-fit: cover;
+    box-shadow: 0 0 5px 3px rgba(0 0 0 / .05);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-icon {
+    font-size: 4rem;
+    color: white;
+  }
+
+  /* Animation for each card */
+  input:nth-of-type(1):checked + .card ~ .card > .card-img {
+    animation: straighten-img-1 calc(var(--duration) * 2) forwards;
+    animation-timing-function: var(--img-easing);
+  }
+  .card:has(~input:nth-of-type(2):checked) > .card-img,
+  input:nth-of-type(2):checked + .card ~ .card > .card-img {
+    animation: straighten-img-2 calc(var(--duration) * 2) forwards;
+    animation-timing-function: var(--img-easing);
+  }
+  .card:has(~input:nth-of-type(3):checked) > .card-img,
+  input:nth-of-type(3):checked + .card ~ .card > .card-img {
+    animation: straighten-img-3 calc(var(--duration) * 2) forwards;
+    animation-timing-function: var(--img-easing);
+  }
+  .card:has(~input:nth-of-type(4):checked) > .card-img,
+  input:nth-of-type(4):checked + .card ~ .card > .card-img {
+    animation: straighten-img-4 calc(var(--duration) * 2) forwards;
+    animation-timing-function: var(--img-easing);
+  }
+
+  /* Keyframes for straightening */
+  @keyframes straighten-img-1 { 50%{ --angle: 0deg;} }
+  @keyframes straighten-img-2 { 50%{ --angle: 0deg;} }
+  @keyframes straighten-img-3 { 50%{ --angle: 0deg;} }
+  @keyframes straighten-img-4 { 50%{ --angle: 0deg;} }
+
+  /* Stacking order */
+  .card {
+    z-index: -1;
+  }
+  input:checked + .card {
+    z-index: 10 !important;
+  }
+  /* next card checked - place behind */
+  .card:has(+input:checked) {
+    z-index: 9;
+  }
+  /* next card +1 checked - place behind */
+  .card:has(+input + .card + input:checked) {
+    z-index: 8;
+  }
+  /* next card +2 checked - place behind */
+  .card:has(+input + .card + input + .card + input:checked) {
+    z-index: 7;
+  }
+  /* next card +3 checked - place behind */
+  .card:has(+input + .card + input + .card + input + .card + input:checked) {
+    z-index: 6;
+  }
+
+  .card-data {
+    display: grid;
+    gap: 1rem;
+  }
+  .card-data > .card-num {
+    opacity: var(--data-opacity, 0);
+    font-size: .8rem;
+    color: #666;
+  }
+  .card-data > p {
+    font-size: 0.9rem;
+  }
+  .card-data > h2,
+  .card-data > p {
+    transition: var(--duration) ease-in-out;
+    transition-delay: var(--data-delay,0ms);
+    opacity: var(--data-opacity, 0);
+    translate: 0 var(--data-y, 20px);
+  }
+  .card-data > footer {
+    display: flex;
+    justify-content: var(--cards-footer-justify);
+    gap: 2rem;
+  }
+  .card-data > footer label {
+    margin-block-start: auto;
+    cursor: pointer;
+    pointer-events: var(--card-events, none);
+    opacity: var(--data-opacity, 0);
+    transition: color var(--duration) ease-in-out;
+    color: var(--label-clr-txt,#000);
+    background-color: var(--label-clr-bg,#EEE);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1/1;
+    display: grid;
+    place-content: center;
+    transition: background-color 300ms ease-in-out,color 300ms ease-in-out;
+  }
+
+  input:checked:focus-visible + .card > .card-data > footer label,
+  .card-data > footer label:hover {
+    --label-clr-txt: #FFF;
+    --label-clr-bg: steelblue;
+  }
+
+  input:checked + .card {
+    --data-opacity: 1;
+    --data-y: 0;
+    --data-delay: var(--duration);
+    --card-events: auto;
+    transition: z-index;
+    transition-delay: 300ms;
+  }
+
+  input:checked + .card > .card-img {
+    animation: reveal-img calc(var(--duration) * 2) forwards;
+  }
+
+  @keyframes reveal-img {
+    50% {
+      translate: -150% 0;
+      --angle: 0deg;
+    }
+  }
+
+  /* Dark mode adjustments */
+  .dark .card-img {
+    border-color: #374151;
+  }
+  .dark .card-data > .card-num {
+    color: #9CA3AF;
+  }
+  .dark .card-data > footer label {
+    --label-clr-txt: #D1D5DB;
+    --label-clr-bg: #374151;
+  }
+  .dark .card-data > footer label:hover {
+    --label-clr-txt: #FFF;
+    --label-clr-bg: #3B82F6;
+  }
+
+  /* Animated CTA buttons from Uiverse.io by bhaveshxrawat */
+  .cta-card {
+    width: auto;
+    height: auto;
+    min-height: 50px;
+    background: #07182E;
+    position: relative;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-card h2, .cta-card span {
+    z-index: 1;
+    color: white;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+    height: 130%;
+    animation: circleBorder 3s linear infinite;
+    transition: all 0.2s linear;
+  }
+
+  @keyframes circleBorder {
+    0% {
+      transform: rotate(0deg) translateX(-50px) translateY(-50px);
+    }
+    25% {
+      transform: rotate(90deg) translateX(50px) translateY(-50px);
+    }
+    50% {
+      transform: rotate(180deg) translateX(50px) translateY(50px);
+    }
+    75% {
+      transform: rotate(270deg) translateX(-50px) translateY(50px);
+    }
+    100% {
+      transform: rotate(360deg) translateX(-50px) translateY(-50px);
+    }
+  }
+
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    background: #07182E;
+    inset: 5px;
+    border-radius: 15px;
+  }
+
+  /* Dark theme adjustments */
+  .dark .cta-card {
+    background: #07182E;
+  }
+
+  .dark .cta-card::after {
+    background: #07182E;
+  }
+
+  /* Light theme adjustments */
+  .light .cta-card {
+    background: #1a1a1a;
+  }
+
+  .light .cta-card::after {
+    background: #1a1a1a;
+  }
+
+  .light .cta-card h2, .light .cta-card span {
+    color: white;
+  }
+
+  /* Slide from right animation for before & after container */
+  .slide-from-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .slide-from-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Stagger the animation for different elements */
+  .slide-from-right:nth-child(1) { transition-delay: 0.1s; }
+  .slide-from-right:nth-child(2) { transition-delay: 0.2s; }
+  .slide-from-right:nth-child(3) { transition-delay: 0.3s; }
+  .slide-from-right:nth-child(4) { transition-delay: 0.4s; }
+  .slide-from-right:nth-child(5) { transition-delay: 0.5s; }
+  .slide-from-right:nth-child(6) { transition-delay: 0.6s; }
 </style>
 
 <style>
@@ -554,8 +874,11 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   // Reveal on scroll for all .reveal-on-scroll elements
   document.addEventListener('DOMContentLoaded', function() {
     const revealEls = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+    const slideFromRightEls = Array.from(document.querySelectorAll('.slide-from-right'));
+    
     if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries, obs) => {
+      // Observer for reveal-on-scroll elements
+      const revealObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
@@ -563,10 +886,204 @@ const { title, description = "AI Growth Infrastructure for Business Development"
           }
         });
       }, { threshold: 0.15 });
-      revealEls.forEach(el => observer.observe(el));
+      revealEls.forEach(el => revealObserver.observe(el));
+      
+      // Observer for slide-from-right elements
+      const slideObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      slideFromRightEls.forEach(el => slideObserver.observe(el));
     } else {
       // Fallback: show all
       revealEls.forEach(el => el.classList.add('visible'));
+      slideFromRightEls.forEach(el => el.classList.add('visible'));
     }
   });
 </script>
+
+<style is:inline>
+  /* Cycle animation for Why Choose Astrix cards */
+  .cycle-card {
+    animation: cycleGlow 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cycle-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: cycleSweep 3s ease-in-out infinite;
+  }
+
+  @keyframes cycleGlow {
+    0%, 100% {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+    }
+    25% {
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+      transform: translateY(-2px);
+    }
+    50% {
+      box-shadow: 0 20px 50px rgba(147, 51, 234, 0.3);
+      transform: translateY(-4px);
+    }
+    75% {
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+      transform: translateY(-2px);
+    }
+  }
+
+  @keyframes cycleSweep {
+    0% {
+      left: -100%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Stagger the cycle animations */
+  .cycle-card:nth-child(1) { animation-delay: 0s; }
+  .cycle-card:nth-child(2) { animation-delay: 1s; }
+  .cycle-card:nth-child(3) { animation-delay: 2s; }
+  .cycle-card:nth-child(4) { animation-delay: 3s; }
+
+  /* Dark theme adjustments for cycle cards */
+  .dark .cycle-card {
+    animation: cycleGlowDark 4s ease-in-out infinite;
+  }
+
+  @keyframes cycleGlowDark {
+    0%, 100% {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(0);
+    }
+    25% {
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+    50% {
+      box-shadow: 0 20px 50px rgba(147, 51, 234, 0.5);
+      transform: translateY(-4px);
+    }
+    75% {
+      box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Carousel functionality for Why Choose Astrix section
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('cards-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('.dot-indicator');
+    const cards = document.querySelectorAll('.card-item');
+    
+    if (!container || !prevBtn || !nextBtn) return;
+    
+    let currentIndex = 0;
+    const cardWidth = 320; // w-80 = 320px
+    const gap = 32; // gap-8 = 32px
+    const totalWidth = cardWidth + gap;
+    
+    function updateCarousel() {
+      const translateX = -currentIndex * totalWidth;
+      container.style.transform = `translateX(${translateX}px)`;
+      container.style.transition = 'transform 0.5s ease-in-out';
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+        dot.classList.toggle('bg-blue-300', index === currentIndex);
+        dot.classList.toggle('dark:bg-blue-600', index === currentIndex);
+        dot.classList.toggle('bg-gray-300', index !== currentIndex);
+        dot.classList.toggle('dark:bg-gray-600', index !== currentIndex);
+      });
+      
+      // Update button states
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === cards.length - 1;
+      
+      prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+      nextBtn.style.opacity = currentIndex === cards.length - 1 ? '0.5' : '1';
+    }
+    
+    function nextSlide() {
+      if (currentIndex < cards.length - 1) {
+        currentIndex++;
+        updateCarousel();
+      }
+    }
+    
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    }
+    
+    // Event listeners
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        nextSlide();
+      }
+    });
+    
+    // Auto-play (optional)
+    let autoPlayInterval;
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(() => {
+        if (currentIndex < cards.length - 1) {
+          nextSlide();
+        } else {
+          currentIndex = 0;
+          updateCarousel();
+        }
+      }, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+    
+    // Pause auto-play on hover
+    container.addEventListener('mouseenter', stopAutoPlay);
+    container.addEventListener('mouseleave', startAutoPlay);
+    
+    // Initialize
+    updateCarousel();
+    startAutoPlay();
+  });
+</script>
+
