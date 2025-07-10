@@ -31,13 +31,24 @@
   </div>
   <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center flex flex-col items-center justify-center">
     <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight bg-gradient-to-r from-primary-600 via-blue-600 to-accent-600 text-transparent bg-clip-text dark:from-white dark:via-gray-200 dark:to-white" style="font-size: 4rem; font-weight: 700; letter-spacing: -2.2px; line-height: 1.1em;">
-      AI Infrastructure to Accelerate Your Business Growth
+      AI Infrastructure to accelerate your Business Growth
     </h1>
     <p class="text-xl md:text-2xl text-neutral-600 dark:text-neutral-200 mb-10 max-w-2xl mx-auto" style="font-weight: 500;">
-      We build intelligent automation systems that capture leads, follow up instantly, and close more deals—without extra staff or complexity.
+      We build AI systems that capture leads, follow up instantly and close more deals — without extra staff.
     </p>
-    <a href="#contact" class="cta-card">
-      <span>Get Started Today</span>
+    <a href="#contact" style="text-decoration:none;">
+      <button class="super-button">
+        <span>Build My AI Growth System</span>
+        <svg fill="none" viewBox="0 0 24 24" class="arrow">
+          <path
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke-width="2"
+            stroke="currentColor"
+            d="M5 12h14M13 6l6 6-6 6"
+          ></path>
+        </svg>
+      </button>
     </a>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16">
       <div class="text-center">
@@ -68,20 +79,72 @@
 .animate-blob1 { animation: blob1 18s ease-in-out infinite; }
 .animate-blob2 { animation: blob2 22s ease-in-out infinite; }
 
-.animate-cta-glow {
-  box-shadow: 0 0 0 0 rgba(162,89,236,0.5), 0 4px 32px 0 rgba(49,46,129,0.10);
-  transition: box-shadow 0.3s, transform 0.3s;
-}
-.animate-cta-glow:hover, .animate-cta-glow:focus {
-  box-shadow: 0 0 24px 8px rgba(162,89,236,0.25), 0 8px 32px 0 rgba(49,46,129,0.15);
-  transform: scale(1.06);
+/* New CTA Button Animation from Uiverse.io by jawad_8494 */
+.super-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: #2d05a969;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 1;
 }
 
-.dark .hero-number:hover {
-  background: linear-gradient(to right, #fff, #e0e7ef) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  filter: brightness(1.7) drop-shadow(0 0 8px #fff8);
-  transition: filter 0.2s, background 0.2s;
+.super-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #00ffff, #ff00ff, #00ffff);
+  animation: rotate 4s linear infinite;
+  z-index: -2;
+}
+
+.super-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: transparent;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.super-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+}
+
+.super-button:hover .arrow {
+  transform: translateX(6px);
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease-in-out;
+  color: #00ffff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

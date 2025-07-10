@@ -8,21 +8,21 @@
       <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-gray-100 mb-8">Our Process</h3>
       <p class="text-xl text-gray-700 dark:text-gray-300 text-center mb-10">We Don't Just Set It Up — We Make Sure It Works</p>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 transition-transform duration-300 hover:scale-105 text-center reveal-on-scroll">
+        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 process-pop-card text-center reveal-on-scroll relative">
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">1. Discover</h4>
           <p class="text-sm text-gray-600 dark:text-gray-300">We learn how your business works and where the gaps are.</p>
         </div>
-        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 transition-transform duration-300 hover:scale-105 text-center reveal-on-scroll">
+        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 process-pop-card text-center reveal-on-scroll relative">
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">2. Build</h4>
           <p class="text-sm text-gray-600 dark:text-gray-300">We install the right AI systems around your workflows, tools and goals.</p>
         </div>
-        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 transition-transform duration-300 hover:scale-105 text-center reveal-on-scroll">
+        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 process-pop-card text-center reveal-on-scroll relative">
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">3. Launch</h4>
           <p class="text-sm text-gray-600 dark:text-gray-300">Everything goes live and immediately handles bookings, follow-ups and support — without manual effort.</p>
         </div>
-        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 transition-transform duration-300 hover:scale-105 text-center reveal-on-scroll">
+        <div class="bg-white/80 dark:bg-darkbg-900/80 rounded-lg p-6 shadow-md backdrop-blur border border-primary-100 dark:border-white/20 process-pop-card text-center reveal-on-scroll relative">
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">4. Optimize</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300">We monitor performance and keep improving results over time.</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">We continuously monitor and improve your AI systems for maximum performance.</p>
         </div>
       </div>
     <div class="text-center mt-12">
@@ -43,5 +43,14 @@
     .dark #how-it-works {
       background-color: #000 !important;
     }
+  }
+
+  .process-pop-card {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+  }
+  .process-pop-card:hover {
+    transform: scale(1.08, 1.12);
+    z-index: 10;
+    box-shadow: 0 8px 32px 0 rgba(49,46,129,0.18), 0 1.5px 0 0 rgba(255,255,255,0.10);
   }
 </style>

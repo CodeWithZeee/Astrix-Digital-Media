@@ -20,6 +20,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
   <body class="font-sans antialiased bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 transition-colors duration-500 min-h-screen flex flex-col" style="background:#000 !important;background-image:none !important;">
     <!-- Loading Screen -->
@@ -40,7 +41,9 @@ const { title, description = "AI Growth Infrastructure for Business Development"
       });
     </script>
     
+    <main class="pt-16">
     <slot />
+    </main>
     <script is:inline>
       const bg = document.getElementById('global-particles-bg');
       const lightBg = document.getElementById('global-light-bg');
@@ -90,7 +93,12 @@ const { title, description = "AI Growth Infrastructure for Business Development"
         transition: background 0.5s;
       }
       body.dark {
-        background: #000 !important;
+    background: #000 !important;
+  }
+
+  /* Global h2 font weight override */
+  h2 {
+    font-weight: 500 !important;
       }
       @keyframes particleFloat {
         0% { transform: translateY(0) scale(1); }
@@ -202,7 +210,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
       <button onclick="document.getElementById('astrix-chatbot-popup').classList.remove('open')" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
     </div>
     <div id="astrix-chatbot-messages">
-      <div style="margin-bottom:8px;">Hi, I can help you get the answers</div>
+      <div style="margin-bottom:8px;background:#f5a623;color:#fff;padding:10px 16px;border-radius:16px 16px 16px 4px;display:inline-block;max-width:80%;font-weight:500;">Hi, I can help you get the answers</div>
     </div>
     <div id="astrix-chatbot-input-area">
       <input id="astrix-chatbot-input" type="text" placeholder="Type your message..." />
@@ -608,7 +616,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     transform-origin: center;
     object-fit: cover;
     box-shadow: 0 0 5px 3px rgba(0 0 0 / .05);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: beige;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -861,6 +869,123 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   .slide-from-right:nth-child(4) { transition-delay: 0.4s; }
   .slide-from-right:nth-child(5) { transition-delay: 0.5s; }
   .slide-from-right:nth-child(6) { transition-delay: 0.6s; }
+
+  /* --- Mobile improvements for .cards carousel --- */
+  @media (max-width: 640px) {
+    .cards {
+      width: 100%;
+      gap: 0.5rem;
+      padding: 0 0.5rem;
+    }
+    .card {
+      --img-w: 120px;
+      gap: 1rem;
+      padding: 1rem 0.5rem;
+      font-size: 0.95rem;
+    }
+    .card-img {
+      width: 120px;
+      height: 120px;
+      min-width: 100px;
+      min-height: 100px;
+      max-width: 90vw;
+      max-height: 40vw;
+    }
+    .card-data > h2 {
+      font-size: 1.1rem;
+    }
+    .card-data > p {
+      font-size: 0.95rem;
+    }
+    .card-data > .card-num {
+      font-size: 0.7rem;
+    }
+    .card-data > footer label {
+      width: 28px;
+      height: 28px;
+      font-size: 1.1rem;
+    }
+  }
+
+  /* --- General mobile section padding and font improvements --- */
+  @media (max-width: 640px) {
+    section, .section {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+    h1, .text-5xl, .text-4xl {
+      font-size: 2rem !important;
+    }
+    h2, .text-3xl {
+      font-size: 1.4rem !important;
+    }
+    h3, .text-2xl {
+      font-size: 1.1rem !important;
+    }
+    p, .text-lg, .text-xl {
+      font-size: 1rem !important;
+    }
+    .max-w-4xl, .max-w-5xl, .max-w-6xl, .max-w-3xl {
+      max-width: 100vw !important;
+    }
+    .flex, .grid {
+      gap: 1rem !important;
+    }
+  }
+
+  /* --- Prevent horizontal scroll on mobile --- */
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* --- Mobile improvements for Pricing section --- */
+  @media (max-width: 640px) {
+    .pricing-container {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 1.5rem !important;
+      padding: 0 0.5rem !important;
+    }
+    .pricing-container .glass {
+      width: 100% !important;
+      max-width: 350px !important;
+      min-width: 0 !important;
+      height: auto !important;
+      margin: 0 auto !important;
+    }
+  }
+
+  /* --- Mobile improvements for Contact section --- */
+  @media (max-width: 640px) {
+    #contact .p-6, #contact .p-8, #contact .sm\:p-8 {
+      padding: 1rem !important;
+    }
+    #contact .mb-16 {
+      margin-bottom: 1.5rem !important;
+    }
+    #contact .text-3xl, #contact .md\:text-4xl {
+      font-size: 1.3rem !important;
+    }
+    #contact .text-xl {
+      font-size: 1rem !important;
+    }
+  }
+
+  /* --- Mobile improvements for Footer --- */
+  @media (max-width: 640px) {
+    footer nav {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 0.5rem !important;
+      space-x-8: 0 !important;
+    }
+    footer .w-full {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+  }
 </style>
 
 <style>
