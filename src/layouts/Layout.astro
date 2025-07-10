@@ -72,7 +72,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
         transition: background 0.5s;
       }
       body.dark {
-        background: #18181b !important;
+        background: #000 !important;
       }
       @keyframes particleFloat {
         0% { transform: translateY(0) scale(1); }
@@ -131,7 +131,16 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     display: flex; align-items: center; justify-content: space-between;
     transition: background 0.3s, color 0.3s;
   }
-  #astrix-chatbot-messages { flex: 1; padding: 16px; overflow-y: auto; }
+  #astrix-chatbot-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    height: 320px;
+    max-height: 320px;
+    min-height: 200px;
+    background: transparent;
+    scroll-behavior: smooth;
+  }
   #astrix-chatbot-input-area { display: flex; border-top: 1px solid #eee; }
   #astrix-chatbot-input {
     flex: 1; border: none; padding: 12px; outline: none;
@@ -170,8 +179,8 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   </button>
   <div id="astrix-chatbot-popup">
     <div id="astrix-chatbot-header">
-      <img src="/AI_Chatbot.jpg" alt="AI Chatbot" style="width:32px;height:32px;border-radius:50%;margin-right:8px;" />
-      <span style="font-weight:bold;">AI Chatbot</span>
+      <img src="/AI_Chatbot.jpg" alt="Astrix Chatbot" style="width:32px;height:32px;border-radius:50%;margin-right:8px;" />
+      <span style="font-weight:bold;">Astrix Chatbot</span>
       <button onclick="document.getElementById('astrix-chatbot-popup').classList.remove('open')" style="background:none;border:none;color:#fff;font-size:20px;cursor:pointer;">×</button>
     </div>
     <div id="astrix-chatbot-messages">
@@ -191,20 +200,119 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     btn.onclick = () => popup.classList.toggle('open');
     send.onclick = () => {
       if (inputEl && (inputEl as HTMLInputElement).value.trim()) {
+        const userInput = (inputEl as HTMLInputElement).value.trim();
+        // User message (left, like incoming)
         const userMsg = document.createElement('div');
-        userMsg.textContent = (inputEl as HTMLInputElement).value;
-        userMsg.style.textAlign = 'right';
-        userMsg.style.margin = '8px 0';
+        userMsg.textContent = userInput;
+        userMsg.style.textAlign = 'left';
+        userMsg.style.margin = '12px 0 4px 0';
+        userMsg.style.padding = '10px 14px';
+        userMsg.style.borderRadius = '16px 16px 16px 4px';
+        userMsg.style.display = 'inline-block';
+        userMsg.style.maxWidth = '80%';
+        userMsg.style.wordBreak = 'break-word';
+        userMsg.style.alignSelf = 'flex-start';
+        userMsg.style.boxShadow = '0 1px 4px rgba(0,0,0,0.04)';
+        if (document.body.classList.contains('dark')) {
+          userMsg.style.background = '#23272f';
+          userMsg.style.color = '#fff';
+        } else {
+          userMsg.style.background = '#f3f4f6';
+          userMsg.style.color = '#18181b';
+        }
         messages.appendChild(userMsg);
-        // Simulate bot reply
+        messages.appendChild(document.createElement('br'));
+
+        // Expanded Knowledge base Q&A pairs
+        const knowledgeBase = [
+          // About
+          { q: ["what is astrix", "about astrix", "who are you", "what do you do", "company info", "what is your mission", "what is your goal", "what is your vision"],
+            a: "Astrix Digital Media empowers businesses to automate, scale, and thrive in the digital age with advanced AI automation. Our mission is to make AI automation accessible, effective, and transformative for every business." },
+          { q: ["what are your values", "company values", "core values", "principles"],
+            a: "Our values: Innovation, Integrity, Partnership, Results." },
+          { q: ["who is on your team", "team", "who works at astrix", "your team", "staff", "experts"],
+            a: "Astrix is powered by a diverse team of AI experts, engineers, designers, and business strategists dedicated to your success." },
+          // Services
+          { q: ["what services do you offer", "what do you offer", "your services", "what can you do for my business", "solutions", "what are your main services", "list of services", "service list", "what can you help with", "what problems do you solve"],
+            a: "We offer: AI Growth Consulting, Traffic Management, Chatbot Development, AI Voice Agents, Workflow Automations, and CRM & Lead Management." },
+          { q: ["ai growth consulting", "consulting", "growth consulting", "business consulting"],
+            a: "AI Growth Consulting: We develop a custom AI strategy aligned with your business goals. Get clear on what matters fast and develop a roadmap for success." },
+          { q: ["traffic management", "audience", "outreach", "visibility", "get more customers", "find clients"],
+            a: "Traffic Management: Attract the right audience, refine your messaging, and maximize visibility for your business." },
+          { q: ["chatbot development", "chatbot", "ai chatbot", "website chatbot", "lead capture", "chat bot"],
+            a: "Chatbot Development: Our AI chatbots instantly engage, answer, and capture leads on your website and social media." },
+          { q: ["ai voice agents", "voice agent", "voice assistant", "phone automation", "call automation", "ai calls"],
+            a: "AI Voice Agents: Automate inbound and outbound calls with natural-sounding AI voice assistants for service, reminders, and more." },
+          { q: ["workflow automation", "automations", "process automation", "save time", "eliminate repetitive tasks", "internal automation"],
+            a: "Workflow Automations: We automate internal processes so your team stays focused on what matters. Save hours every week by eliminating repetitive tasks." },
+          { q: ["crm", "lead management", "sales pipeline", "crm system", "manage leads", "customer management"],
+            a: "CRM & Lead Management: We optimize your sales pipeline with intelligent campaigns that nurture and convert every opportunity." },
+          // Features
+          { q: ["features", "key features", "main features", "unique features", "what makes you different", "why choose astrix"],
+            a: "Key features: Custom AI strategy, lead-capturing chatbots, AI voice agents, workflow automations, CRM optimization, analytics dashboard, and ongoing support." },
+          { q: ["do you offer support", "customer support", "help after purchase", "ongoing support"],
+            a: "Yes, we provide ongoing monthly support for all our plans." },
+          // Pricing
+          { q: ["pricing", "plans", "cost", "how much", "price", "how much does it cost", "what are your prices", "plan details", "subscription", "monthly fee", "setup fee"],
+            a: "We offer three plans: Foundation ($1,000 setup, $297/month), Growth (from $2,500 setup, $497/month), and Executive (custom quote)." },
+          { q: ["foundation plan", "starter plan", "basic plan"],
+            a: "Foundation Plan: $1,000 setup, $297/month. For early-stage businesses. Includes AI website, chatbot, workflow automation, and support." },
+          { q: ["growth plan", "mid plan", "scaling plan"],
+            a: "Growth Plan: From $2,500 setup, $497/month. For scaling businesses. Includes custom website, advanced automation, CRM, AI voice agent, analytics, and more." },
+          { q: ["executive plan", "top plan", "enterprise plan"],
+            a: "Executive Plan: Custom quote. For established teams. Includes everything in Growth, plus full AI infrastructure, custom integrations, and ongoing optimization." },
+          // Contact
+          { q: ["contact", "how can i contact you", "email", "phone", "get in touch", "reach you", "contact info", "contact information"],
+            a: "You can contact us at info@astrixdigitalmedia.com or call (313) 398-6372. We respond within 2 hours during business hours." },
+          { q: ["demo", "free demo", "book demo", "schedule demo", "see a demo", "demo call", "demo meeting"],
+            a: "You can schedule a free personalized demo to see how our AI infrastructure can transform your business." },
+          // Process
+          { q: ["how does it work", "process", "what to expect", "how to get started", "steps", "onboarding", "how do i start"],
+            a: "Our process: Discovery Call → Live Demo → Custom Proposal. We learn about your business, show you a live demo, and provide a tailored solution." },
+          { q: ["response time", "how fast do you reply", "how long to respond", "when will you reply"],
+            a: "We respond within 2 hours during business hours." },
+          { q: ["who are your clients", "who do you work with", "what industries", "what types of businesses", "do you work with small businesses", "do you work with enterprises"],
+            a: "We work with businesses of all sizes and industries, from startups to established enterprises." },
+          { q: ["testimonials", "reviews", "customer feedback", "success stories"],
+            a: "Our clients have seen transformative results. For testimonials and case studies, please contact us or schedule a demo." },
+        ];
+
+        // Find best match (case-insensitive, simple keyword match)
+        const inputLower = userInput.toLowerCase();
+        let answer = null;
+        for (const item of knowledgeBase) {
+          if (item.q.some(q => inputLower.includes(q))) {
+            answer = item.a;
+            break;
+          }
+        }
+        if (!answer) {
+          answer = "Sorry, I can only answer questions about our website and services. Please check our FAQ or contact us!";
+        }
         setTimeout(() => {
+          // Bot message (right, like outgoing)
           const botMsg = document.createElement('div');
-          botMsg.textContent = "Thanks! We'll get back to you soon.";
-          botMsg.style.textAlign = 'left';
-          botMsg.style.margin = '8px 0';
+          botMsg.textContent = answer;
+          botMsg.style.textAlign = 'right';
+          botMsg.style.margin = '4px 0 16px 0';
+          botMsg.style.padding = '10px 14px';
+          botMsg.style.borderRadius = '16px 16px 4px 16px';
+          botMsg.style.display = 'inline-block';
+          botMsg.style.maxWidth = '80%';
+          botMsg.style.wordBreak = 'break-word';
+          botMsg.style.alignSelf = 'flex-end';
+          botMsg.style.boxShadow = '0 1px 4px rgba(0,0,0,0.04)';
+          if (document.body.classList.contains('dark')) {
+            botMsg.style.background = '#2563eb';
+            botMsg.style.color = '#fff';
+          } else {
+            botMsg.style.background = '#F5A623';
+            botMsg.style.color = '#fff';
+          }
           messages.appendChild(botMsg);
+          messages.appendChild(document.createElement('br'));
           messages.scrollTop = messages.scrollHeight;
-        }, 800);
+        }, 600);
         (inputEl as HTMLInputElement).value = '';
         messages.scrollTop = messages.scrollHeight;
       }
@@ -214,6 +322,27 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   <!-- Chatbot Widget End -->
 
     <!--  -->
+
+    <script is:inline>
+      // Only apply black background and remove background-image in dark mode
+      function setDarkBg() {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.style.background = '#000';
+          document.documentElement.style.backgroundImage = 'none';
+          document.body.style.background = '#000';
+          document.body.style.backgroundImage = 'none';
+        } else {
+          document.documentElement.style.background = '';
+          document.documentElement.style.backgroundImage = '';
+          document.body.style.background = '';
+          document.body.style.backgroundImage = '';
+        }
+      }
+      setDarkBg();
+      // Listen for theme changes
+      const darkObs = new MutationObserver(setDarkBg);
+      darkObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    </script>
 
   </body>
 </html>
@@ -231,4 +360,52 @@ const { title, description = "AI Growth Infrastructure for Business Development"
   .dark section {
     background-color: #000 !important;
   }
+
+  html, body, * {
+    font-family: 'Figtree', 'Figtree Placeholder', sans-serif !important;
+  }
+  /* Reveal on scroll effect */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+    will-change: opacity, transform;
+  }
+  .reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* FORCE solid black background in dark mode, remove any gradient or image */
+  body.dark, html.dark, .dark {
+    background: #000 !important;
+    background-image: none !important;
+  }
 </style>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+  html, body, * {
+    font-family: 'Figtree', 'Figtree Placeholder', sans-serif !important;
+  }
+</style>
+
+<script is:inline>
+  // Reveal on scroll for all .reveal-on-scroll elements
+  document.addEventListener('DOMContentLoaded', function() {
+    const revealEls = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      // Fallback: show all
+      revealEls.forEach(el => el.classList.add('visible'));
+    }
+  });
+</script>

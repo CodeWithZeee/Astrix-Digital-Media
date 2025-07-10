@@ -14,7 +14,6 @@
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#case-studies" class="nav-link">Case Studies</a>
       <a href="#blog" class="nav-link">Blog</a>
-      <a href="#contact" class="nav-link">Contact</a>
       <a href="/login" class="nav-link">Login</a>
       <button id="theme-toggle" aria-label="Toggle theme" class="ml-4 w-9 h-9 bg-white/60 dark:bg-neutral-800 border border-white/20 dark:border-neutral-700 rounded-full shadow-sm flex items-center justify-center transition-all duration-200 focus:outline-none">
         <svg id="sun-icon" class="w-4 h-4 text-neutral-700 dark:text-neutral-300 transition-all duration-200 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -39,7 +38,6 @@
     <a href="#pricing" class="block nav-link py-2">Pricing</a>
     <a href="#case-studies" class="block nav-link py-2">Case Studies</a>
     <a href="#blog" class="block nav-link py-2">Blog</a>
-    <a href="#contact" class="block nav-link py-2">Contact</a>
     <a href="/login" class="block nav-link py-2">Login</a>
   </div>
 </header>
@@ -308,6 +306,13 @@ html.dark [data-astro-logo] {
 }
 
 .dark header {
+  background: #000 !important;
+}
+
+.header-gradient {
+  background: linear-gradient(90deg, #a259ec 0%, #06b6d4 100%);
+}
+.dark .header-gradient {
   background: #000 !important;
 }
 </style>

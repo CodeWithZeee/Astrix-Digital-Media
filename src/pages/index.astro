@@ -8,20 +8,18 @@ import Pricing from '../components/Pricing.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import LightBackground from '../components/LightBackground.astro';
-import DarkBackground from '../components/DarkBackground.astro';
 ---
 <!-- g -->
 <Layout title="Astrix Digital Media - AI Growth Infrastructure for Business Development">
   <!-- Global Backgrounds -->
   <LightBackground />
-  <DarkBackground />
   
   <Header />
   <main>
     <Hero />
     <Features />
     <!-- Pain Points Section -->
-    <section id="pain-points" class="py-20 bg-gray-50 dark:bg-darkbg-900/90">
+    <section id="pain-points" class="py-0 bg-gray-50 dark:bg-black relative overflow-hidden reveal-on-scroll">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Pain Points</h2>
         <p class="text-xl text-gray-700 dark:text-gray-300 mb-6">
@@ -35,10 +33,10 @@ import DarkBackground from '../components/DarkBackground.astro';
     </section>
     <HowItWorks />
     <!-- Who It's For Section -->
-    <section id="who-its-for" class="py-20 bg-white dark:bg-black border-y border-neutral-100 dark:border-neutral-800">
+    <section id="who-its-for" class="py-20  border-y border-neutral-100 dark:border-neutral-800 relative overflow-hidden reveal-on-scroll">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4 font-sans" style="font-family: 'Figtree', 'Figtree Placeholder', sans-serif;">Who It's For</h2>
-        <p class="text-xl text-neutral-600 dark:text-neutral-300 mb-10 font-sans" style="font-family: 'Figtree', 'Figtree Placeholder', sans-serif; font-weight: 500;">
+        <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">Who It's For</h2>
+        <p class="text-xl text-neutral-600 dark:text-neutral-300 mb-10" style="font-weight: 500;">
           If You're Running a Growing Business, This Was Built for You
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
@@ -75,20 +73,200 @@ import DarkBackground from '../components/DarkBackground.astro';
         </div>
       </div>
     </section>
-    <Pricing />
-    <Contact />
-    <section id="privacy-policy" class="py-20 bg-white/80 dark:bg-darkbg-900/80 backdrop-blur">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Privacy Policy</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Learn how we protect your data and privacy as you use our platform.</p>
-        <a href="/privacy-policy" class="inline-block bg-primary-600 dark:bg-neutral-800 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-neutral-700 transition-colors duration-200">Read Full Policy</a>
+    <!-- Before & After Section -->
+    <section id="before-after" class="py-20 relative overflow-hidden reveal-on-scroll">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-4">Before & After</h2>
+        </div>
+        <div class="relative bg-white/80 dark:bg-black/80 rounded-3xl shadow-2xl border border-neutral-100 dark:border-neutral-800 flex flex-col md:flex-row overflow-hidden backdrop-blur-lg">
+          <!-- Before Column -->
+          <div class="flex-1 p-8 md:p-12 flex flex-col gap-6 items-start justify-center">
+            <h3 class="text-2xl font-bold text-neutral-500 mb-4 flex items-center gap-2"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#e5e7eb"/><path d="M9.5 10.5a2.5 2.5 0 115 0" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><path d="M8 16c.667-1.333 2-2 4-2s3.333.667 4 2" stroke="#64748b" stroke-width="2" stroke-linecap="round"/></svg>Before</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#f87171"/><path d="M7 8l6 6M13 8l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Inconsistent lead generation</li>
+              <li class="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#fbbf24"/><path d="M10 6v4l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Lost opportunities and wasted time</li>
+              <li class="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#a3a3a3"/><path d="M7 10h6M10 7v6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Hours spent on manual admin</li>
+              <li class="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#818cf8"/><path d="M7 13l3-3 3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Static, outdated website</li>
+              <li class="flex items-center gap-3 text-neutral-700 dark:text-neutral-300"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#f472b6"/><path d="M7 10h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Overwhelmed team with no time to grow</li>
+            </ul>
+          </div>
+          <!-- Divider -->
+          <div class="hidden md:flex flex-col items-center justify-center px-2">
+            <div class="h-72 w-1 bg-gradient-to-b from-transparent via-neutral-300 dark:via-neutral-700 to-transparent rounded-full"></div>
+          </div>
+          <!-- After Column -->
+          <div class="flex-1 p-8 md:p-12 flex flex-col gap-6 items-start justify-center bg-gradient-to-b from-blue-50/60 dark:from-blue-900/20 to-transparent">
+            <h3 class="text-2xl font-bold text-blue-600 dark:text-blue-300 mb-4 flex items-center gap-2"><svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#38bdf8"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>After</h3>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#38bdf8"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Consistent traffic and qualified leads</li>
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#4ade80"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Website that engages, responds, and books on autopilot</li>
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#facc15"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>AI handles calls, texts, and follow-ups 24/7</li>
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#a78bfa"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Workflows that save hours each week</li>
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#f472b6"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>AI cold calls and qualifies leads</li>
+              <li class="flex items-center gap-3 text-blue-700 dark:text-blue-200"><svg width="20" height="20" fill="none" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#38bdf8"/><path d="M7 10l3 3 3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>Instant customer support with no wait time</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
-    <section id="terms-of-service" class="py-20 bg-white/80 dark:bg-darkbg-900/80 backdrop-blur">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Terms of Service</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">Understand the rules and conditions for using Astrix Digital Media.</p>
-        <a href="/terms-of-service" class="inline-block bg-primary-600 dark:bg-neutral-800 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 dark:hover:bg-neutral-700 transition-colors duration-200">Read Full Terms</a>
+    <Pricing />
+
+    <!-- Why Choose Astrix Digital Media Section -->
+    <section id="why-choose-astrix" class="py-24 relative overflow-visible bg-gradient-to-br from-blue-50/60 via-white/80 to-pink-50/60 dark:from-black dark:via-neutral-900 dark:to-black reveal-on-scroll">
+      <div class="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-fuchsia-600 to-pink-500 dark:from-blue-400 dark:via-fuchsia-400 dark:to-pink-400" style="letter-spacing: -1.5px;">Why Choose Astrix Digital Media</h2>
+        </div>
+        <div class="relative flex flex-col gap-12 md:gap-16">
+          <!-- Timeline Line -->
+          <div class="hidden md:block absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-blue-200 via-fuchsia-200 to-pink-200 dark:from-blue-900 dark:via-fuchsia-900 dark:to-pink-900 opacity-40 rounded-full" style="transform: translateX(-50%);"></div>
+          <!-- Timeline Items -->
+          <div class="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-0">
+            <!-- 1 -->
+            <div class="md:col-start-1 md:row-start-1 flex flex-col items-end md:pr-16 relative">
+              <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-blue-100 relative z-10 hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">⚡</span>
+                  <span class="text-xl font-bold text-blue-700">Fast Launch, Real Results</span>
+                </div>
+                <p class="text-neutral-700">Your AI infrastructure goes live in days, not months — with clear outcomes like more leads, better follow-ups and lower overhead.</p>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="md:col-start-2 md:row-start-2 flex flex-col items-start md:pl-16 relative">
+              <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-fuchsia-100 relative z-10 hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">🧠</span>
+                  <span class="text-xl font-bold text-fuchsia-700">Strategy Over Hype</span>
+                </div>
+                <p class="text-neutral-700">We don't follow trends. We build custom systems that align with your goals and scale as you grow.</p>
+              </div>
+            </div>
+            <!-- 3 -->
+            <div class="md:col-start-1 md:row-start-3 flex flex-col items-end md:pr-16 relative">
+              <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-cyan-100 relative z-10 hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">🛠️</span>
+                  <span class="text-xl font-bold text-cyan-700">Platform-Agnostic, Results-Focused</span>
+                </div>
+                <p class="text-neutral-700">We're not tied to any single platform. We use the right tools for your business — not what earns us commissions.</p>
+              </div>
+            </div>
+            <!-- 4 -->
+            <div class="md:col-start-2 md:row-start-4 flex flex-col items-start md:pl-16 relative">
+              <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md border border-pink-100 relative z-10 hover:scale-105 transition-transform duration-300">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">🤝</span>
+                  <span class="text-xl font-bold text-pink-700">Full-Service Partnership</span>
+                </div>
+                <p class="text-neutral-700">From strategy and setup to support and optimization — we're with you every step of the way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Final CTA Section -->
+    <section id="final-cta" class="py-20 text-neutral-900 dark:text-white relative overflow-hidden reveal-on-scroll">
+      <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight" style="letter-spacing: -1.5px;">Ready to Stop Doing Everything Yourself?</h2>
+        <p class="text-xl md:text-2xl mb-10 font-medium text-black dark:text-white">Let AI take over the busywork — so you can focus on scaling, serving, and succeeding.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="px-8 py-4 rounded-xl bg-white text-blue-700 font-bold text-lg shadow-lg hover:bg-blue-100 transition-colors duration-200 transition-transform transition-shadow duration-400 transform hover:scale-105 hover:shadow-2xl">Book My Free Strategy Call</a>
+          <a href="#" class="px-8 py-4 rounded-xl bg-white/20 border border-white/40 text-black dark:text-white font-bold text-lg shadow-lg hover:bg-gray-200 dark:hover:bg-neutral-800 transition-colors duration-200 transition-transform transition-shadow duration-400 backdrop-blur transform hover:scale-105 hover:shadow-2xl">See the AI System in Action</a>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section (Xtract style, with your content) -->
+    <section id="faq" class="py-24 bg-white dark:bg-black relative overflow-visible reveal-on-scroll">
+      <div class="max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10" x-data="{ open: null }">
+        <div class="text-center mb-14">
+          <h2 class="text-3xl md:text-4xl font-bold text-black dark:text-white mb-8 text-center">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-4">
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 0 }">
+            <button @click="open = open === 0 ? null : 0" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">How can AI automation help my business?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 0, 'rotate-0': open !== 0} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 0" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">AI automation eliminates manual work, increases speed, and reduces costly errors. It helps you capture more leads, engage customers faster, and streamline operations — so you can grow with fewer bottlenecks.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 1 }">
+            <button @click="open = open === 1 ? null : 1" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">Is AI automation hard to implement?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 1, 'rotate-0': open !== 1} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 1" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">Not at all. Our systems are designed for smooth integration with your current tools. We guide you step-by-step through setup, so you get results fast — without the tech headaches.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 2 }">
+            <button @click="open = open === 2 ? null : 2" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">Do I need to be tech-savvy to use this?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 2, 'rotate-0': open !== 2} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 2" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">No technical experience is needed. Everything is designed for ease of use. We provide onboarding, tutorials, and ongoing support to ensure you're confident and in control.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 3 }">
+            <button @click="open = open === 3 ? null : 3" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">Which industries can benefit from your AI systems?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 3, 'rotate-0': open !== 3} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 3" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">Our AI solutions work across industries — including service businesses, healthcare, real estate, legal, home improvement, and more. If you rely on leads, calls, or customer service, AI can elevate your results.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 4 }">
+            <button @click="open = open === 4 ? null : 4" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">What makes your solution different from other tools?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 4, 'rotate-0': open !== 4} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 4" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">We don't just offer tools — we build complete AI growth systems tailored to your business. From strategy to execution, we partner with you to ensure real, measurable results.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 5 }">
+            <button @click="open = open === 5 ? null : 5" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">What kind of support do you provide?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 5, 'rotate-0': open !== 5} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 5" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">You get full support — from onboarding and setup to ongoing optimization. Our team is always available to help with questions, troubleshooting, or custom requests as your business evolves.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 6 }">
+            <button @click="open = open === 6 ? null : 6" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">How long does it take to get everything up and running?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 6, 'rotate-0': open !== 6} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 6" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">You can go live in as little as 48 hours, depending on the plan you choose. Most clients see their full AI system operational within 7–14 days.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 7 }">
+            <button @click="open = open === 7 ? null : 7" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">Can I cancel anytime?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 7, 'rotate-0': open !== 7} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 7" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">Yes. You're free to cancel anytime. There are no contracts or commitments — just results that make our clients stay.</div>
+          </div>
+          <div class="rounded-2xl bg-white dark:bg-black dark:text-[#b0b0b0] shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-300 cursor-pointer hover:scale-105 group" :class="{ 'ring-2 ring-blue-400 dark:ring-blue-500': open === 8 }">
+            <button @click="open = open === 8 ? null : 8" class="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+              <span class="text-lg md:text-xl font-semibold text-neutral-900 dark:text-inherit">What kind of ROI can I expect?</span>
+              <span class="ml-4 flex-shrink-0">
+                <svg :class="{'rotate-180': open === 8, 'rotate-0': open !== 8} + ' w-6 h-6 text-blue-400 transition-transform duration-300'" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </button>
+            <div x-show="open === 8" x-transition class="px-6 pb-6 text-neutral-700 dark:text-inherit text-base leading-relaxed">Most clients start seeing results within 30–60 days. By replacing manual tasks with automation, you reduce costs, convert more leads, and unlock long-term growth.</div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
