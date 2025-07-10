@@ -69,20 +69,26 @@
       <div class="flex flex-col md:flex-row items-center gap-8 reveal-on-scroll">
         <div class="feature-card w-full md:w-1/2 reveal-on-scroll">
           <div class="feature-icon">
-            <svg width="120" height="120" fill="none" viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" stroke="#a259ec" stroke-width="3"/><path d="M20 12v4M20 24v4M12 20h4M24 20h4" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="20" r="3" fill="#06b6d4"/></svg>
+            <svg width="40" height="40" fill="none" viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" stroke="#a259ec" stroke-width="3"/><path d="M20 12v4M20 24v4M12 20h4M24 20h4" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="20" r="3" fill="#06b6d4"/></svg>
           </div>
           <h3>Workflow Automations</h3>
           <p>Save hours every week by eliminating repetitive tasks. We automate internal processes like reminders, reporting, data entry, and communications — so your team stays focused on high-impact work.</p>
         </div>
         <div class="w-full md:w-1/2 flex items-center justify-center">
-          <div id="lottie-workflow" class="w-[340px] h-[260px] md:w-[420px] md:h-[320px] reveal-on-scroll"></div>
+          <div id="lottie-workflow" class="w-[450px] h-[350px] md:w-[600px] md:h-[450px] reveal-on-scroll"></div>
         </div>
       </div>
       <!-- 6. CRM & Lead Management (Lottie) -->
       <div class="flex flex-col md:flex-row-reverse items-center gap-8 reveal-on-scroll">
         <div class="feature-card w-full md:w-1/2 reveal-on-scroll">
           <div class="feature-icon">
-            <img src="@CRMpng.png" alt="CRM & Lead Management" style="width: 60px; height: 60px; object-fit: contain; display: block; margin: 0 auto;" />
+            <svg width="40" height="40" fill="none" viewBox="0 0 40 40">
+              <rect x="8" y="8" width="24" height="24" rx="4" stroke="#a259ec" stroke-width="3"/>
+              <circle cx="16" cy="16" r="2" fill="#06b6d4"/>
+              <circle cx="24" cy="16" r="2" fill="#06b6d4"/>
+              <path d="M12 24h16" stroke="#a259ec" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 28h12" stroke="#06b6d4" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </div>
           <h3>CRM & Lead Management</h3>
           <p>Never lose a lead again. We optimize your sales pipeline with intelligent campaigns that track, nurtures and converts every opportunity — increasing close rates and reducing manual follow-up.</p>
@@ -109,7 +115,7 @@
 </section>
 
 <!-- Lottie-web for all feature cards -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer onload="window.addEventListener('DOMContentLoaded',function(){if(window.lottie){window.lottie.loadAnimation({container:document.getElementById('lottie-ai-growth'),renderer:'svg',loop:true,autoplay:true,path:'/AI Growth Consulting.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-traffic'),renderer:'svg',loop:true,autoplay:true,path:'/Traffic Management.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-chatbot'),renderer:'svg',loop:true,autoplay:true,path:'/Chatbot Development.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-voice-agent'),renderer:'svg',loop:true,autoplay:true,path:'/AI Voice Agent.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-workflow'),renderer:'svg',loop:true,autoplay:true,path:'/Workflow.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-crm'),renderer:'svg',loop:true,autoplay:true,path:'/CRM & Lead Management.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-reputation'),renderer:'svg',loop:true,autoplay:true,path:'/Reputation Management.json'});}});"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" defer onload="window.addEventListener('DOMContentLoaded',function(){if(window.lottie){window.lottie.loadAnimation({container:document.getElementById('lottie-ai-growth'),renderer:'svg',loop:true,autoplay:true,path:'/AI Growth Consulting.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-traffic'),renderer:'svg',loop:true,autoplay:true,path:'/Traffic Management.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-chatbot'),renderer:'svg',loop:true,autoplay:true,path:'/Chatbot Development.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-voice-agent'),renderer:'svg',loop:true,autoplay:true,path:'/AI Voice Agent.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-workflow'),renderer:'svg',loop:true,autoplay:true,path:'/Workflow.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-crm'),renderer:'svg',loop:true,autoplay:true,path:'/CRM & Lead Management.json'});window.lottie.loadAnimation({container:document.getElementById('lottie-reputation'),renderer:'svg',loop:true,autoplay:true,path:'/Last.json'});}});"></script>
 
 <style is:inline>
 .feature-card {
@@ -295,12 +301,133 @@
   box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Larger icon for Workflow Automations (fifth card) */
-.flex-col.gap-12 > div:nth-child(5) .feature-icon {
-  width: 120px;
-  height: 120px;
-  font-size: 3rem;
+/* Hover effect for the fifth card (Workflow Automations) */
+.flex-col.gap-12 > div:nth-child(5) .feature-card {
+  cursor: pointer;
 }
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transition: all 0.15s ease;
+  z-index: 1;
+  border-radius: 1.25rem;
+}
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.15s ease;
+}
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card:hover h3 {
+  color: white !important;
+}
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card:hover p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flex-col.gap-12 > div:nth-child(5) .feature-card:hover .feature-icon {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Hover effect for the sixth card (CRM & Lead Management) */
+.flex-col.gap-12 > div:nth-child(6) .feature-card {
+  cursor: pointer;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+  transition: all 0.15s ease;
+  z-index: 1;
+  border-radius: 1.25rem;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.15s ease;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card:hover h3 {
+  color: white !important;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card:hover p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flex-col.gap-12 > div:nth-child(6) .feature-card:hover .feature-icon {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Hover effect for the seventh card (Reputation Management) */
+.flex-col.gap-12 > div:nth-child(7) .feature-card {
+  cursor: pointer;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: linear-gradient(135deg, #a16207 0%, #92400e 100%);
+  transition: all 0.15s ease;
+  z-index: 1;
+  border-radius: 1.25rem;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card > * {
+  position: relative;
+  z-index: 2;
+  transition: color 0.15s ease;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card:hover h3 {
+  color: white !important;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card:hover p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.flex-col.gap-12 > div:nth-child(7) .feature-card:hover .feature-icon {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 12px 0 rgba(255, 255, 255, 0.2);
+}
+
+
 
 .feature-icon {
   margin-bottom: 1.5rem;
