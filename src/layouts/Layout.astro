@@ -228,6 +228,11 @@ const { title, description = "AI Growth Infrastructure for Business Development"
       if (inputEl && (inputEl as HTMLInputElement).value.trim()) {
         const userInput = (inputEl as HTMLInputElement).value.trim();
         // User message (left, like incoming)
+        // Always start user messages on a new line
+        const userDivs = Array.from(messages.children).filter(el => el.nodeType === 1 && (el as HTMLElement).style.textAlign === 'left');
+        if (userDivs.length === 0) {
+          messages.appendChild(document.createElement('br'));
+        }
         const userMsg = document.createElement('div');
         userMsg.textContent = userInput;
         userMsg.style.textAlign = 'left';

@@ -6,21 +6,21 @@ import Footer from '../components/Footer.astro';
 
 <Layout title="Terms of Service | Astrix Digital Media">
   <Header />
-  <main class="pt-16">
+  <main class="pt-16 bg-gray-50 dark:bg-neutral-950 min-h-screen font-[Figtree]">
     <!-- Hero Section -->
-    <section class="bg-gray-50 py-16">
+    <section class="bg-gray-50 dark:bg-neutral-900 py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
-        <p class="text-xl text-gray-600">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Terms of Service</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300">
           Last updated: December 2024
         </p>
       </div>
     </section>
 
     <!-- Terms of Service Content -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-neutral-900">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-none">
+        <div class="prose prose-lg max-w-none dark:prose-invert bg-white/90 dark:bg-neutral-900/90 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-neutral-800">
           
           <h2>1. Acceptance of Terms</h2>
           
@@ -214,15 +214,15 @@ import Footer from '../components/Footer.astro';
 
 <style>
   .prose h2 {
-    @apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+    @apply text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4;
   }
   
   .prose h3 {
-    @apply text-xl font-semibold text-gray-900 mt-6 mb-3;
+    @apply text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3;
   }
   
   .prose p {
-    @apply text-gray-700 mb-4 leading-relaxed;
+    @apply text-gray-700 dark:text-gray-300 mb-4 leading-relaxed;
   }
   
   .prose ul {
@@ -230,6 +230,18 @@ import Footer from '../components/Footer.astro';
   }
   
   .prose li {
-    @apply text-gray-700 mb-2;
+    @apply text-gray-700 dark:text-gray-300 mb-2;
+  }
+  
+  .prose .bg-gray-50 {
+    @apply dark:bg-neutral-800 dark:text-gray-200;
+  }
+  
+  .prose .bg-blue-50 {
+    @apply dark:bg-blue-950 dark:text-blue-200;
+  }
+  
+  .prose .border-blue-400 {
+    @apply dark:border-blue-600;
   }
 </style>
