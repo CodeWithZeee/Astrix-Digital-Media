@@ -485,20 +485,22 @@ const { title, description = "AI Growth Infrastructure for Business Development"
 
   .pricing-container .glass {
     position: relative;
-    width: 280px;
-    height: 400px;
+    width: 300px;
+    height: 550px;
     background: linear-gradient(#fff2, transparent);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 10px;
     margin: 0 -45px;
     backdrop-filter: blur(10px);
     transform: rotate(calc(var(--r) * 1deg));
+    padding: 20px 0;
+    overflow-y: auto;
   }
 
   .pricing-container:hover .glass {
@@ -950,7 +952,7 @@ const { title, description = "AI Growth Infrastructure for Business Development"
     .pricing-container {
       flex-direction: column !important;
       align-items: stretch !important;
-      gap: 1.5rem !important;
+      gap: 2rem !important;
       padding: 0 0.5rem !important;
     }
     .pricing-container .glass {
@@ -958,7 +960,9 @@ const { title, description = "AI Growth Infrastructure for Business Development"
       max-width: 350px !important;
       min-width: 0 !important;
       height: auto !important;
+      min-height: 500px !important;
       margin: 0 auto !important;
+      padding: 15px 0 !important;
     }
   }
 
