@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<style>
+/* Theme-adaptive styles for the AI demo page */
+.demo-hero {
+  background: linear-gradient(to bottom right, #ffffff, #f8fafc, #ffffff);
+  transition: background 0.3s ease;
+}
+
+:global(html.dark) .demo-hero {
+  background: linear-gradient(to bottom right, #000000, #1a1a1a, #000000);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+:global(html.dark) .video-container {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
+.demo-content {
+  transition: color 0.3s ease;
+}
+
+:global(html.dark) .demo-content {
+  color: #ffffff;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+:global(html.dark) .feature-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+:global(html.dark) .feature-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #a259ec, #06b6d4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon svg {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  transition: background 0.3s ease;
+}
+
+:global(html.dark) .cta-section {
+  background: linear-gradient(135deg, #1a1a1a, #000000);
+}
+
+.cta-button {
+  background: linear-gradient(135deg, #a259ec, #06b6d4);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(162, 89, 236, 0.3);
+}
+</style>
+
+<Layout title="AI System in Action - See How It Works | Astrix Digital Media">
+  <Header />
+  <main class="pt-16">
+    <!-- Hero Section -->
+    <section class="demo-hero py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            See the AI System in Action
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Watch how our AI infrastructure captures leads, follows up instantly, and closes more deals — all on autopilot.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-20 bg-white dark:bg-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="video-container" style="aspect-ratio: 16/9;">
+          <iframe 
+            title="AI System Demo" 
+            src="https://player.vimeo.com/video/703759134?h=835c952f85" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+            What You Just Saw in Action
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Our AI system handles everything from lead capture to follow-up, ensuring no opportunity is missed.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Instant Lead Capture</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              AI instantly captures and qualifies leads from your website, social media, and other channels.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Smart Follow-up</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Automated follow-up sequences that engage prospects at the perfect time with personalized messages.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Deal Closing</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              AI-powered sales processes that guide prospects through the funnel and close more deals.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Performance Analytics</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Real-time insights into your AI system's performance and ROI tracking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          Ready to See This in Your Business?
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+          Book your personalized demo and discover how our AI can transform your lead generation and sales process.
+        </p>
+        <a href="/contact" class="cta-button">
+          Schedule Your Free Demo
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout> 

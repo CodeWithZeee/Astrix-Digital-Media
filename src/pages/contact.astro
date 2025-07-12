@@ -257,6 +257,36 @@ textarea {
 :global(html.dark) .custom-gradient {
   background: linear-gradient(to bottom right, #000000, #1a1a1a, #000000);
 }
+
+/* Dark theme text color override */
+html.dark .text-xl.text-gray-600.max-w-3xl.mx-auto {
+  color: rgb(104 104 104) !important;
+}
+
+/* Dark theme form elements text color */
+html.dark #firstName_input,
+html.dark #lastName_input,
+html.dark #email_input,
+html.dark #phone_input,
+html.dark #company_input,
+html.dark #businessNeeds_input {
+  color: rgb(104 104 104) !important;
+}
+
+/* Dark theme form placeholders */
+html.dark #firstName_input::placeholder,
+html.dark #lastName_input::placeholder,
+html.dark #email_input::placeholder,
+html.dark #phone_input::placeholder,
+html.dark #company_input::placeholder,
+html.dark #businessNeeds_input::placeholder {
+  color: rgb(104 104 104) !important;
+}
+
+/* Dark theme commitment text color */
+html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
+  color: rgb(104 104 104) !important;
+}
 </style>
 
 <Layout title="Contact Us - Schedule Your Free Demo | Astrix Digital Media">
@@ -469,7 +499,7 @@ textarea {
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Email</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">hello@astrixdigitalmedia.com</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">info@astrixdigitalmedia.com</p>
             <p class="text-sm text-gray-500 dark:text-gray-400">Response within 2 hours</p>
           </div>
 
@@ -481,7 +511,7 @@ textarea {
               </svg>
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Phone</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">+1 (555) 123-4567</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">(313) 398-6372</p>
             <p class="text-sm text-gray-500 dark:text-gray-400">Mon-Fri 9AM-6PM EST</p>
           </div>
 
