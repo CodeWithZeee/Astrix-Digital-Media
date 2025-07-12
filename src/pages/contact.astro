@@ -5,153 +5,257 @@ import Footer from '../components/Footer.astro';
 ---
 
 <style>
-/* Uiverse.io Card Login Style, adapted for Astro and dark mode */
-.demo-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 420px;
-  width: 340px;
-  gap: 20px;
-  background: #e3e3e3;
-  box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe;
-  border-radius: 12px;
-  margin: 0 auto;
-  transition: background 0.3s;
-  padding: 2.5rem 1.5rem;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html {
+  font-family: 'Montserrat', Arial, sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
-:global(html.dark) .demo-card {
-  background: #18181b;
-  box-shadow: 16px 16px 32px #101014, -16px -16px 32px #23232a;
+
+body {
+  background: #F2F3EB;
 }
-.demo-login {
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  display: block;
-  font-weight: bold;
-  font-size: x-large;
-  font-family: 'Figtree', sans-serif;
-  margin-bottom: 0.5em;
+
+button {
+  overflow: visible;
 }
-:global(html.dark) .demo-login {
-  color: #fff;
+
+button, select {
+  text-transform: none;
 }
-.demo-inputBox {
+
+button, input, select, textarea {
+  color: #5A5A5A;
+  font: inherit;
+  margin: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+textarea {
+  overflow: auto;
+}
+
+#container {
+  border: solid 3px #474544;
+  max-width: 75%;
+  width: 75%;
+  margin: 60px auto;
   position: relative;
-  width: 250px;
-  margin-bottom: 1.5em;
 }
-.demo-inputBox input,
-.demo-inputBox select,
-.demo-inputBox textarea {
+
+form {
+  padding: 60px;
+  margin: 50px 0;
+}
+
+h1 {
+  color: #474544;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.underline {
+  border-bottom: solid 2px #474544;
+  margin: -0.512em auto;
+  width: 80px;
+}
+
+.icon_wrapper {
+  margin: 50px auto 0;
   width: 100%;
-  padding: 10px;
-  outline: none;
+}
+
+.icon {
+  display: block;
+  fill: #474544;
+  height: 50px;
+  margin: 0 auto;
+  width: 50px;
+}
+
+.email {
+	float: right;
+	width: 45%;
+}
+
+input[type='text'], [type='email'], [type='tel'], select, textarea {
+	background: none;
   border: none;
-  color: #000;
-  font-size: 1em;
-  background: transparent;
-  border-left: 2px solid #000;
-  border-bottom: 2px solid #000;
-  transition: 0.1s;
-  border-bottom-left-radius: 8px;
-  font-family: 'Figtree', sans-serif;
-}
-:global(html.dark) .demo-inputBox input,
-:global(html.dark) .demo-inputBox select,
-:global(html.dark) .demo-inputBox textarea {
-  color: #fff;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  background: transparent;
-}
-.demo-inputBox span {
-  margin-top: 5px;
-  position: absolute;
-  left: 0;
-  transform: translateY(-4px);
-  margin-left: 10px;
-  padding: 10px;
-  pointer-events: none;
-  font-size: 12px;
-  color: #000;
+	border-bottom: solid 2px #474544;
+	color: #474544;
+	font-size: 1.000em;
+  font-weight: 400;
+  letter-spacing: 1px;
+	margin: 0em 0 1.875em 0;
+	padding: 0 0 0.875em 0;
   text-transform: uppercase;
-  transition: 0.5s;
-  letter-spacing: 3px;
-  border-radius: 8px;
-  font-family: 'Figtree', sans-serif;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
-:global(html.dark) .demo-inputBox span {
-  color: #fff;
+
+input[type='text']:focus, [type='email']:focus, [type='tel']:focus, textarea:focus {
+	outline: none;
+	padding: 0 0 0.875em 0;
 }
-.demo-inputBox input:valid ~ span,
-.demo-inputBox input:focus ~ span,
-.demo-inputBox select:valid ~ span,
-.demo-inputBox select:focus ~ span,
-.demo-inputBox textarea:valid ~ span,
-.demo-inputBox textarea:focus ~ span {
-  transform: translateX(113px) translateY(-15px);
-  font-size: 0.8em;
-  padding: 5px 10px;
-  background: #000;
-  letter-spacing: 0.2em;
-  color: #fff;
-  border: 2px;
+
+.message {
+	float: none;
 }
-:global(html.dark) .demo-inputBox input:valid ~ span,
-:global(html.dark) .demo-inputBox input:focus ~ span,
-:global(html.dark) .demo-inputBox select:valid ~ span,
-:global(html.dark) .demo-inputBox select:focus ~ span,
-:global(html.dark) .demo-inputBox textarea:valid ~ span,
-:global(html.dark) .demo-inputBox textarea:focus ~ span {
-  background: #fff;
-  color: #000;
+
+.name {
+	float: left;
+	width: 45%;
 }
-.demo-inputBox input:valid,
-.demo-inputBox input:focus,
-.demo-inputBox select:valid,
-.demo-inputBox select:focus,
-.demo-inputBox textarea:valid,
-.demo-inputBox textarea:focus {
-  border: 2px solid #000;
-  border-radius: 8px;
+
+select {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23474544" d="M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.762L10.825 4z"/></svg>') no-repeat right 8px center;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding-right: 30px;
 }
-:global(html.dark) .demo-inputBox input:valid,
-:global(html.dark) .demo-inputBox input:focus,
-:global(html.dark) .demo-inputBox select:valid,
-:global(html.dark) .demo-inputBox select:focus,
-:global(html.dark) .demo-inputBox textarea:valid,
-:global(html.dark) .demo-inputBox textarea:focus {
-  border: 2px solid #fff;
+
+select::-ms-expand {
+  display: none;
 }
-.demo-enter {
-  height: 45px;
-  width: 100px;
-  border-radius: 5px;
-  border: 2px solid #000;
+
+/* Dark mode styles for select options */
+:global(html.dark) option {
+  background-color: #474544;
+  color: #F2F3EB;
+}
+
+/* Dark mode styles for select dropdown */
+:global(html.dark) select option:hover {
+  background-color: #666666;
+}
+
+/* Ensure options are visible in dark mode */
+:global(html.dark) select option:checked {
+  background-color: #474544;
+  color: #F2F3EB;
+}
+
+.subject {
+  width: 100%;
+}
+
+.telephone {
+  width: 100%;
+}
+
+textarea {
+	line-height: 150%;
+	height: 150px;
+	resize: none;
+  width: 100%;
+}
+
+::-webkit-input-placeholder {
+	color: #474544;
+}
+
+:-moz-placeholder { 
+	color: #474544;
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	color: #474544;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: #474544;
+}
+
+#form_button {
+  background: none;
+  border: solid 2px #474544;
+  color: #474544;
   cursor: pointer;
-  background-color: transparent;
-  transition: 0.5s;
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 2px;
-  margin-bottom: 1em;
-  font-family: 'Figtree', sans-serif;
+  display: inline-block;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-size: 0.875em;
   font-weight: bold;
-  color: #000;
+  outline: none;
+  padding: 20px 35px;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
-.demo-enter:hover {
-  background-color: #000;
-  color: #fff;
+
+#form_button:hover {
+  background: #474544;
+  color: #F2F3EB;
 }
-:global(html.dark) .demo-enter {
-  border: 2px solid #fff;
-  color: #fff;
+
+@media screen and (max-width: 768px) {
+  #container {
+    margin: 20px auto;
+    width: 95%;
+    max-width: 95%;
+  }
 }
-:global(html.dark) .demo-enter:hover {
-  background-color: #fff;
-  color: #000;
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 26px;
+  }
+  
+  .underline {
+    width: 68px;
+  }
+  
+  #form_button {
+    padding: 15px 25px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  h1 {
+    font-size: 18px;
+  }
+  
+  .icon {
+    height: 35px;
+    width: 35px;
+  }
+  
+  .underline {
+    width: 53px;
+  }
+  
+  input[type='text'], [type='email'], [type='tel'], select, textarea {
+    font-size: 0.875em;
+  }
+}
+
+.custom-gradient {
+  background: linear-gradient(to bottom right, #ffffff, #f8fafc, #ffffff);
+}
+
+:global(html.dark) .custom-gradient {
+  background: linear-gradient(to bottom right, #000000, #1a1a1a, #000000);
 }
 </style>
 
@@ -159,7 +263,7 @@ import Footer from '../components/Footer.astro';
   <Header />
   <main class="pt-16">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary-50 via-white to-accent-50 py-20">
+    <section class="custom-gradient py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -173,136 +277,185 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <!-- Contact Form & Calendar Section -->
+    <!-- Contact Form Section -->
     <section class="py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
-          <!-- Contact Form -->
-          <div class="demo-card">
-            <a class="demo-login">Get Started Today</a>
-            <form class="w-full flex flex-col items-center" id="contact-form" style="gap: 0;">
-              <div class="demo-inputBox">
-                <input type="text" id="firstName" name="firstName" required />
-                <span>First Name</span>
+        <div class="flex justify-center">
+          <!-- New Contact Form -->
+          <div id="container">
+            <h1>&bull; Keep in Touch &bull;</h1>
+            <div class="underline">
+            </div>
+            <div class="icon_wrapper">
+              <svg class="icon" viewBox="0 0 145.192 145.192">
+                <path d="M126.82,32.694c-2.804,0-5.08,2.273-5.08,5.075v2.721c-1.462,0-2.646,1.185-2.646,2.647v1.995    c0,1.585,1.286,2.873,2.874,2.873h20.577c1.462,0,2.646-1.185,2.646-2.647v-3.041c0-1.009-0.816-1.825-1.823-1.825v-2.722    c0-2.802-2.276-5.075-5.079-5.075h-1.985v-3.829c0-3.816-3.095-6.912-6.913-6.912h-0.589h-20.45c0-2.67-2.164-4.835-4.833-4.835    H56.843c-2.67,0-4.835,2.165-4.835,4.835H34.356v-3.384h-9.563v3.384v1.178h-7.061v1.416c-2.67,0.27-10.17,1.424-13.882,5.972    c-1.773,2.17-2.44,4.791-1.983,7.793c0.463,3.043,1.271,6.346,2.128,9.841c2.354,9.616,5.024,20.515,0.549,28.077    C2.647,79.44-3.125,90.589,2.201,99.547c4.123,6.935,13.701,10.44,28.5,10.44c1.186,0,2.405-0.023,3.658-0.068v9.028h-0.296    c-2.516,0-4.558,2.039-4.558,4.558v4.566h100.04v-4.564c0-2.519-2.039-4.558-4.558-4.558h-0.297V84.631h0.297    c2.519,0,4.558-2.037,4.558-4.556v-0.009c0-2.516-2.039-4.556-4.556-4.556l-36.786-0.009V61.973c0-2.193-1.777-3.971-3.972-3.971    v-4.711h0.456c1.629,0,2.952-1.32,2.952-2.949h14.227V34.459h1.658c2.672,0,4.834-2.165,4.834-4.834h20.45v3.069H126.82z     M34.06,75.511c-2.518,0-4.558,2.04-4.558,4.556v0.009c0,2.519,2.042,4.556,4.558,4.556h0.296v24.12l-0.042-1.168    c-15.994,0.574-26.122-2.523-30.106-9.229C-0.464,90.5,4.822,80.347,6.55,77.423c4.964-8.382,2.173-19.774-0.29-29.825    c-0.843-3.442-1.639-6.696-2.088-9.638c-0.354-2.35,0.129-4.3,1.484-5.958c3.029-3.714,9.509-4.805,12.076-5.1v1.233h7.061v1.49    v2.684c-2.403,1.114-4.153,2.997-4.676,5.237H18.15c-0.584,0-1.056,0.474-1.056,1.056v0.83c0,0.584,0.475,1.056,1.056,1.056h1.984    c0.561,2.18,2.304,3.999,4.658,5.092v0.029c0,0-2.282,20.823,16.479,22.099v1.102c0,1.177,0.955,2.133,2.133,2.133h3.297    c1.178,0,2.133-0.956,2.133-2.133V50.135c0-1.177-0.955-2.132-2.133-2.132h-3.297c-1.178,0-2.133,0.955-2.133,2.132    c-1.575-0.235-5.532-1.17-6.635-4.547c2.36-1.092,4.109-2.913,4.669-5.097h1.308c0.722,0,1.309-0.584,1.309-1.308v-0.578    c0-0.584-0.475-1.056-1.056-1.056h-1.539c-0.542-2.332-2.416-4.271-4.968-5.363v-2.559h17.651c0,2.67,2.166,4.835,4.836,4.835 h2.392v15.88h13.639c0,1.629,1.321,2.949,2.951,2.949h0.899v4.711c-2.194,0-3.972,1.778-3.972,3.971v13.529L34.06,75.511z     M95.188,101.78c0,8.655-7.012,15.665-15.664,15.665c-8.653,0-15.667-7.01-15.667-15.665c0-8.647,7.014-15.664,15.667-15.664    C88.177,86.116,95.188,93.132,95.188,101.78z M97.189,45.669h-9.556c0-0.896-0.726-1.62-1.619-1.62H74.494    c-0.896,0-1.621,0.727-1.621,1.62h-8.967v-11.21h33.283V45.669z"></path>
+                <path d="M70.865,101.78c0,4.774,3.886,8.657,8.66,8.657c4.774,0,8.657-3.883,8.657-8.657c0-4.773-3.883-8.656-8.657-8.656    C74.751,93.124,70.865,97.006,70.865,101.78z"></path>
+              </svg>
+            </div>
+            <form action="#" method="post" id="contact_form">
+              <div class="name">
+                <label for="firstName"></label>
+                <input type="text" placeholder="First Name" name="firstName" id="firstName_input" required>
                 </div>
-              <div class="demo-inputBox">
-                <input type="text" id="lastName" name="lastName" required />
-                <span>Last Name</span>
+              <div class="email">
+                <label for="lastName"></label>
+                <input type="text" placeholder="Last Name" name="lastName" id="lastName_input" required>
               </div>
-              <div class="demo-inputBox">
-                <input type="email" id="email" name="email" required />
-                <span>Email Address</span>
+              <div class="telephone">
+                <label for="email"></label>
+                <input type="email" placeholder="Email Address" name="email" id="email_input" required>
               </div>
-              <div class="demo-inputBox">
-                <input type="tel" id="phone" name="phone" />
-                <span>Phone Number</span>
+              <div class="telephone">
+                <label for="phone"></label>
+                <input type="tel" placeholder="Phone Number" name="phone" id="phone_input" required>
               </div>
-              <div class="demo-inputBox">
-                <input type="text" id="company" name="company" required />
-                <span>Company Name</span>
+              <div class="message">
+                <label for="company"></label>
+                <input type="text" placeholder="Company Name" name="company" id="company_input" required>
               </div>
-              <div class="demo-inputBox">
-                <select id="industry" name="industry" required>
-                  <option value="" disabled selected hidden></option>
+              <div class="subject">
+                <label for="industry"></label>
+                <select name="industry" id="industry_input" required>
+                  <option disabled hidden selected>Industry</option>
                   <option value="local-services">Local Services</option>
                   <option value="healthcare">Healthcare</option>
                   <option value="real-estate">Real Estate</option>
-                  <option value="legal">Legal Services</option>
+                  <option value="legal-services">Legal Services</option>
                   <option value="automotive">Automotive</option>
                   <option value="retail">Retail</option>
                   <option value="restaurants">Restaurants</option>
-                  <option value="agencies">Marketing Agencies</option>
+                  <option value="marketing-agencies">Marketing Agencies</option>
                   <option value="other">Other</option>
                 </select>
-                <span>Industry</span>
               </div>
-              <div class="demo-inputBox">
-                <select id="employees" name="employees">
-                  <option value="" disabled selected hidden></option>
-                  <option value="1-10">1-10 employees</option>
-                  <option value="11-50">11-50 employees</option>
-                  <option value="51-200">51-200 employees</option>
-                  <option value="201-500">201-500 employees</option>
+              <div class="subject">
+                <label for="companySize"></label>
+                <select name="companySize" id="companySize_input" required>
+                  <option disabled hidden selected>Company Size</option>
+                  <option value="1-10">1 - 10 employees</option>
+                  <option value="11-50">11 - 50 employees</option>
+                  <option value="51-200">51 - 200 employees</option>
+                  <option value="201-500">201 - 500 employees</option>
                   <option value="500+">500+ employees</option>
                 </select>
-                <span>Company Size</span>
               </div>
-              <div class="demo-inputBox">
-                <textarea id="message" name="message" rows="3"></textarea>
-                <span>Business Needs</span>
+              <div class="message">
+                <label for="businessNeeds"></label>
+                <textarea name="businessNeeds" placeholder="Business Needs" id="businessNeeds_input" cols="30" rows="5" required></textarea>
               </div>
-              <button type="submit" class="demo-enter">Submit</button>
-            </form>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center">
+              <div class="submit">
+                <input type="submit" value="Book My Demo Call" id="form_button" />
+              </div>
+            </form><!-- // End form -->
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center">
               No commitment required. See results in your first demo call.
             </p>
-          </div>
-
-          <!-- Calendar Booking -->
-          <div class="space-y-8">
-            <!-- Embedded Calendar -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <h2 class="text-2xl font-bold text-gray-900 mb-6">Book Your Demo Directly</h2>
-              
-              <!-- Calendar Placeholder - Replace with actual booking system -->
-              <div class="bg-gray-50 rounded-lg p-8 text-center min-h-[400px] flex items-center justify-center">
-                <div>
-                  <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                    </svg>
-                  </div>
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">Calendar Integration</h3>
-                  <p class="text-gray-600 mb-4">
-                    Integrate your preferred calendar booking system here
-                  </p>
-                  <p class="text-sm text-gray-500">
-                    (Calendly, Acuity Scheduling, or custom booking system)
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- What to Expect -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <h3 class="text-2xl font-bold text-gray-900 mb-6">What to Expect</h3>
-              
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div class="bg-green-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                    <span class="text-green-600 font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900">Discovery Call (15 min)</h4>
-                    <p class="text-gray-600 text-sm">We'll learn about your business and current challenges</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <div class="bg-blue-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                    <span class="text-blue-600 font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900">Live Demo (30 min)</h4>
-                    <p class="text-gray-600 text-sm">See our AI in action with scenarios specific to your industry</p>
-                  </div>
-                </div>
-
-                <div class="flex items-start">
-                  <div class="bg-purple-100 w-8 h-8 rounded-full flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                    <span class="text-purple-600 font-bold text-sm">3</span>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900">Custom Proposal</h4>
-                    <p class="text-gray-600 text-sm">Receive a tailored solution and implementation plan</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div><!-- // End #container -->
         </div>
       </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      // Declare emailjs for TypeScript
+      declare const emailjs: any;
+      
+      // Initialize EmailJS
+      (function() {
+        emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace with your actual EmailJS public key
+      })();
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contact_form') as HTMLFormElement;
+        
+        if (contactForm) {
+          contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const firstName = formData.get('firstName') as string;
+            const lastName = formData.get('lastName') as string;
+            const email = formData.get('email') as string;
+            const phone = formData.get('phone') as string;
+            const company = formData.get('company') as string;
+            const industry = formData.get('industry') as string;
+            const companySize = formData.get('companySize') as string;
+            const businessNeeds = formData.get('businessNeeds') as string;
+            
+            // Show loading state
+            const submitButton = document.getElementById('form_button') as HTMLInputElement;
+            const originalText = submitButton.value;
+            submitButton.value = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Send confirmation email to user
+            const userEmailParams = {
+              to_name: firstName,
+              to_email: email,
+              company: company,
+              industry: industry,
+              company_size: companySize
+            };
+            
+            // Send notification email to business
+            const businessEmailParams = {
+              from_name: `${firstName} ${lastName}`,
+              email: email,
+              phone: phone,
+              company: company,
+              industry: industry,
+              company_size: companySize,
+              business_needs: businessNeeds
+            };
+            
+            // Send SMS confirmation to user (using Twilio or similar service)
+            const smsMessage = `Hi ${firstName}! Thank you for your demo request with Astrix Digital Media. We'll contact you within 2 hours to schedule your call. - Astrix Team`;
+            
+            // Send emails using EmailJS
+            Promise.all([
+              emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_USER_TEMPLATE_ID_HERE', userEmailParams),
+              emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_BUSINESS_TEMPLATE_ID_HERE', businessEmailParams)
+            ])
+            .then(function() {
+              // Success - send SMS (you'll need to implement this with your SMS service)
+              sendSMS(phone, smsMessage);
+              
+              // Show success message
+              alert('Thank you for your demo request! We have sent you a confirmation email and SMS. We will contact you within 2 hours to schedule your demo call.');
+              
+              // Reset form
+              contactForm.reset();
+            })
+            .catch(function(error) {
+              console.error('Email sending failed:', error);
+              alert('Thank you for your demo request! We will contact you within 2 hours to schedule your demo call.');
+              contactForm.reset();
+            })
+            .finally(function() {
+              // Reset button state
+              submitButton.value = originalText;
+              submitButton.disabled = false;
+            });
+          });
+        }
+        
+        // Function to send SMS (you'll need to implement this with your SMS service)
+        function sendSMS(phoneNumber: string, message: string) {
+          // Example using Twilio (you'll need to set up your own Twilio account)
+          // This is a placeholder - you'll need to implement the actual SMS sending
+          console.log(`SMS would be sent to ${phoneNumber}: ${message}`);
+          
+          // For now, we'll just log it. You can implement actual SMS sending with:
+          // - Twilio
+          // - SendGrid SMS
+          // - AWS SNS
+          // - Or any other SMS service
+        }
+      });
+    </script>
+
+
 
     <!-- Location & Support Info -->
     <section class="py-20 bg-gray-50">
