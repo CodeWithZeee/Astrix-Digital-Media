@@ -168,47 +168,15 @@
       <!-- Contact Form -->
       <div class="demo-card">
         <a class="demo-login">Get Started Today</a>
-        <form class="w-full flex flex-col items-center" style="gap: 0;">
-          <div class="demo-inputBox">
-            <input type="text" id="firstName" name="firstName" required />
-            <span>First Name</span>
-            </div>
-          <div class="demo-inputBox">
-            <input type="text" id="lastName" name="lastName" required />
-            <span>Last Name</span>
-          </div>
-          <div class="demo-inputBox">
-            <input type="email" id="email" name="email" required />
-            <span>Email Address</span>
-          </div>
-          <div class="demo-inputBox">
-            <input type="tel" id="phone" name="phone" />
-            <span>Phone Number</span>
-          </div>
-          <div class="demo-inputBox">
-            <input type="text" id="company" name="company" required />
-            <span>Company Name</span>
-          </div>
-          <div class="demo-inputBox">
-            <select id="industry" name="industry" required>
-              <option value="" disabled selected hidden></option>
-              <option value="local-services">Local Services</option>
-              <option value="healthcare">Healthcare</option>
-              <option value="real-estate">Real Estate</option>
-              <option value="legal">Legal Services</option>
-              <option value="automotive">Automotive</option>
-              <option value="retail">Retail</option>
-              <option value="restaurants">Restaurants</option>
-              <option value="agencies">Marketing Agencies</option>
-              <option value="other">Other</option>
-            </select>
-            <span>Industry</span>
-          </div>
-          <div class="demo-inputBox">
-            <textarea id="message" name="message" rows="3" required></textarea>
-            <span>Business Needs</span>
-          </div>
-          <button type="submit" class="demo-enter">Submit</button>
+        <form action="/api/contact" method="POST" id="contact_form">
+          <input name="firstName" value="Test" />
+          <input name="lastName" value="User" />
+          <input name="email" value="test@example.com" />
+          <input name="phone" value="1234567890" />
+          <input name="company" value="TestCo" />
+          <input name="industry" value="Other" />
+          <input name="message" value="Hello" />
+          <button type="submit">Submit</button>
         </form>
         <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center">
           No commitment required. See results in your first demo call.

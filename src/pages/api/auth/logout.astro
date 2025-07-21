@@ -8,7 +8,7 @@ export async function POST({ request }) {
 
     if (token) {
       // Delete session from database
-      sessionService.deleteSession(token);
+      await sessionService.deleteSession(token);
     }
 
     return new Response(JSON.stringify({

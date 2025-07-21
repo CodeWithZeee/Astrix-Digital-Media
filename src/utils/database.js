@@ -1,12 +1,16 @@
+
+import 'dotenv/config';
+console.log("MONGO_URI:", process.env.MONGO_URI);
 import * as fs from "fs";
 import * as path from "path";
 import * as bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
+import { MongoClient } from "mongodb";
 
 // Database file paths
 const DB_DIR = path.join(process.cwd(), "data");
-const USERS_FILE = path.join(DB_DIR, "users.json");
-const SESSIONS_FILE = path.join(DB_DIR, "sessions.json");
+// const USERS_FILE = path.join(DB_DIR, "users.json");
+// const SESSIONS_FILE = path.join(DB_DIR, "sessions.json");
 
 // Ensure data directory exists
 if (!fs.existsSync(DB_DIR)) {
@@ -14,43 +18,42 @@ if (!fs.existsSync(DB_DIR)) {
 }
 
 // Initialize database files if they don't exist
-if (!fs.existsSync(USERS_FILE)) {
-  fs.writeFileSync(USERS_FILE, JSON.stringify([], null, 2));
-}
-
-if (!fs.existsSync(SESSIONS_FILE)) {
-  fs.writeFileSync(SESSIONS_FILE, JSON.stringify([], null, 2));
-}
+// if (!fs.existsSync(USERS_FILE)) {
+//   fs.writeFileSync(USERS_FILE, JSON.stringify([], null, 2));
+// }
+// if (!fs.existsSync(SESSIONS_FILE)) {
+//   fs.writeFileSync(SESSIONS_FILE, JSON.stringify([], null, 2));
+// }
 
 // Helper functions to read/write JSON files
-function readJsonFile(filePath) {
-  try {
-    const data = fs.readFileSync(filePath, "utf8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error(`Error reading ${filePath}:`, error);
-    return [];
-  }
-}
-
-function writeJsonFile(filePath, data) {
-  try {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-    return true;
-  } catch (error) {
-    console.error(`Error writing ${filePath}:`, error);
-    return false;
-  }
-}
+// function readJsonFile(filePath) {
+//   try {
+//     const data = fs.readFileSync(filePath, "utf8");
+//     return JSON.parse(data);
+//   } catch (error) {
+//     console.error(`Error reading ${filePath}:`, error);
+//     return [];
+//   }
+// }
+// function writeJsonFile(filePath, data) {
+//   try {
+//     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+//     return true;
+//   } catch (error) {
+//     console.error(`Error writing ${filePath}:`, error);
+//     return false;
+//   }
+// }
 
 // User management functions
 export const userService = {
   // Create a new user
   async createUser({ email, password, name }) {
-    const users = readJsonFile(USERS_FILE);
+    const db = await connectDB();
+    const users = db.collection("users");
 
     // Check if user already exists
-    const existingUser = users.find((u) => u.email === email);
+    const existingUser = await users.findOne({ email });
     if (existingUser) {
       throw new Error("User with this email already exists");
     }
@@ -60,7 +63,6 @@ export const userService = {
     const verificationToken = uuidv4();
 
     const newUser = {
-      id: users.length + 1,
       uuid,
       email,
       password: hashedPassword,
@@ -74,11 +76,10 @@ export const userService = {
       updated_at: new Date().toISOString(),
     };
 
-    users.push(newUser);
-    writeJsonFile(USERS_FILE, users);
+    const result = await users.insertOne(newUser);
 
     return {
-      id: newUser.id,
+      id: result.insertedId,
       uuid: newUser.uuid,
       email: newUser.email,
       name: newUser.name,
@@ -87,154 +88,159 @@ export const userService = {
   },
 
   // Find user by email
-  findUserByEmail(email) {
-    const users = readJsonFile(USERS_FILE);
-    return users.find((u) => u.email === email);
+  async findUserByEmail(email) {
+    const db = await connectDB();
+    const users = db.collection("users");
+    return await users.findOne({ email });
   },
 
   // Find user by ID
   findUserById(id) {
-    const users = readJsonFile(USERS_FILE);
-    return users.find((u) => u.id === id);
+    // const users = readJsonFile(USERS_FILE);
+    // return users.find((u) => u.id === id);
   },
 
   // Find user by UUID
   findUserByUuid(uuid) {
-    const users = readJsonFile(USERS_FILE);
-    return users.find((u) => u.uuid === uuid);
+    // const users = readJsonFile(USERS_FILE);
+    // return users.find((u) => u.uuid === uuid);
   },
 
   // Find user by verification token
-  findUserByVerificationToken(verificationToken) {
-    const users = readJsonFile(USERS_FILE);
-    return users.find((u) => u.verification_token === verificationToken);
+  async findUserByVerificationToken(verificationToken) {
+    const db = await connectDB();
+    const users = db.collection("users");
+    return await users.findOne({ verification_token: verificationToken });
   },
 
   // Verify user email
-  verifyEmail(verificationToken) {
-    const users = readJsonFile(USERS_FILE);
-    const userIndex = users.findIndex(
-      (u) => u.verification_token === verificationToken
+  async verifyEmail(verificationToken) {
+    const db = await connectDB();
+    const users = db.collection("users");
+    const result = await users.findOneAndUpdate(
+      { verification_token: verificationToken },
+      {
+        $set: {
+          email_verified: true,
+          verification_token: null,
+          updated_at: new Date().toISOString(),
+        },
+      },
+      { returnDocument: "after" }
     );
-
-    if (userIndex === -1) {
-      return false;
-    }
-
-    users[userIndex].email_verified = true;
-    users[userIndex].verification_token = null;
-    users[userIndex].updated_at = new Date().toISOString();
-
-    return writeJsonFile(USERS_FILE, users);
+    return result.value !== null;
   },
 
   // Update user
   updateUser(id, updates) {
-    const users = readJsonFile(USERS_FILE);
-    const userIndex = users.findIndex((u) => u.id === id);
-
-    if (userIndex === -1) {
-      return false;
-    }
-
-    users[userIndex] = {
-      ...users[userIndex],
-      ...updates,
-      updated_at: new Date().toISOString(),
-    };
-    return writeJsonFile(USERS_FILE, users);
+    // const users = readJsonFile(USERS_FILE);
+    // const userIndex = users.findIndex((u) => u.id === id);
+    // if (userIndex === -1) {
+    //   return false;
+    // }
+    // users[userIndex] = {
+    //   ...users[userIndex],
+    //   ...updates,
+    //   updated_at: new Date().toISOString(),
+    // };
+    // return writeJsonFile(USERS_FILE, users);
   },
 
   // Set password reset token
-  setResetToken(email, resetToken, expiresAt) {
-    const users = readJsonFile(USERS_FILE);
-    const userIndex = users.findIndex((u) => u.email === email);
-
-    if (userIndex === -1) {
-      return false;
-    }
-
-    users[userIndex].reset_token = resetToken;
-    users[userIndex].reset_token_expires = expiresAt;
-    users[userIndex].updated_at = new Date().toISOString();
-
-    return writeJsonFile(USERS_FILE, users);
+  async setResetToken(email, resetToken, expiresAt) {
+    const db = await connectDB();
+    const users = db.collection("users");
+    const result = await users.updateOne(
+      { email },
+      {
+        $set: {
+          reset_token: resetToken,
+          reset_token_expires: expiresAt,
+          updated_at: new Date().toISOString(),
+        },
+      }
+    );
+    return result.modifiedCount > 0;
   },
 
   // Reset password
-  resetPassword(resetToken, newPassword) {
-    const users = readJsonFile(USERS_FILE);
-    const userIndex = users.findIndex(
-      (u) =>
-        u.reset_token === resetToken &&
-        u.reset_token_expires > new Date().toISOString()
-    );
-
-    if (userIndex === -1) {
+  async resetPassword(resetToken, newPassword) {
+    const db = await connectDB();
+    const users = db.collection("users");
+    const user = await users.findOne({
+      reset_token: resetToken,
+      reset_token_expires: { $gt: new Date().toISOString() },
+    });
+    if (!user) {
       return false;
     }
-
-    const hashedPassword = bcrypt.hashSync(newPassword, 12);
-    users[userIndex].password = hashedPassword;
-    users[userIndex].reset_token = null;
-    users[userIndex].reset_token_expires = null;
-    users[userIndex].updated_at = new Date().toISOString();
-
-    return writeJsonFile(USERS_FILE, users);
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    const result = await users.updateOne(
+      { reset_token: resetToken },
+      {
+        $set: {
+          password: hashedPassword,
+          reset_token: null,
+          reset_token_expires: null,
+          updated_at: new Date().toISOString(),
+        },
+      }
+    );
+    return result.modifiedCount > 0;
   },
 };
 
 // Session management functions
 export const sessionService = {
   // Create a new session
-  createSession(userId, token, expiresAt) {
-    const sessions = readJsonFile(SESSIONS_FILE);
-
+  async createSession(userId, token, expiresAt) {
+    const db = await connectDB();
+    const sessions = db.collection("sessions");
     const newSession = {
-      id: sessions.length + 1,
       user_id: userId,
       token,
       expires_at: expiresAt,
       created_at: new Date().toISOString(),
     };
-
-    sessions.push(newSession);
-    return writeJsonFile(SESSIONS_FILE, sessions);
+    await sessions.insertOne(newSession);
+    return true;
   },
 
   // Find session by token
-  findSessionByToken(token) {
-    const sessions = readJsonFile(SESSIONS_FILE);
-    const users = readJsonFile(USERS_FILE);
-
-    const session = sessions.find(
-      (s) => s.token === token && s.expires_at > new Date().toISOString()
-    );
+  async findSessionByToken(token) {
+    const db = await connectDB();
+    const sessions = db.collection("sessions");
+    const users = db.collection("users");
+    const session = await sessions.findOne({
+      token,
+      expires_at: { $gt: new Date().toISOString() },
+    });
     if (!session) {
       return null;
     }
-
-    const user = users.find((u) => u.id === session.user_id);
+    const user = await users.findOne({ uuid: session.user_id });
     if (!user) {
       return null;
     }
-
     return { ...session, ...user };
   },
 
   // Delete session
-  deleteSession(token) {
-    const sessions = readJsonFile(SESSIONS_FILE);
-    const filteredSessions = sessions.filter((s) => s.token !== token);
-    return writeJsonFile(SESSIONS_FILE, filteredSessions);
+  async deleteSession(token) {
+    const db = await connectDB();
+    const sessions = db.collection("sessions");
+    await sessions.deleteOne({ token });
+    return true;
   },
 
   // Clean expired sessions
-  cleanExpiredSessions() {
-    const sessions = readJsonFile(SESSIONS_FILE);
-    const currentTime = new Date().toISOString();
-    const validSessions = sessions.filter((s) => s.expires_at > currentTime);
-    return writeJsonFile(SESSIONS_FILE, validSessions);
+  async cleanExpiredSessions() {
+    const db = await connectDB();
+    const sessions = db.collection("sessions");
+    const result = await sessions.deleteMany({
+      expires_at: { $lte: new Date().toISOString() },
+    });
+    return result.deletedCount;
   },
 };
 
@@ -244,7 +250,7 @@ export async function initializeDefaultAdmin() {
   if (!adminUser) {
     try {
       const hashedPassword = await bcrypt.hash("admin123", 12);
-      const users = readJsonFile(USERS_FILE);
+      // const users = readJsonFile(USERS_FILE);
       const newAdmin = {
         id: users.length + 1,
         uuid: uuidv4(),
@@ -259,8 +265,8 @@ export async function initializeDefaultAdmin() {
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       };
-      users.push(newAdmin);
-      writeJsonFile(USERS_FILE, users);
+      // users.push(newAdmin);
+      // writeJsonFile(USERS_FILE, users);
       console.log("Default admin user created: admin@astrix.com / admin123");
     } catch (error) {
       console.error("Error creating default admin user:", error);
@@ -269,3 +275,13 @@ export async function initializeDefaultAdmin() {
 }
 
 export default { userService, sessionService };
+
+const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri);
+
+export async function connectDB() {
+  if (!client.topology?.isConnected()) {
+    await client.connect();
+  }
+  return client.db("astrix_db");
+}

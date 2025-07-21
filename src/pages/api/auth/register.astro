@@ -53,7 +53,7 @@ export async function POST({ request }) {
     }
 
     // Check if user already exists
-    const existingUser = userService.findUserByEmail(email);
+    const existingUser = await userService.findUserByEmail(email);
     if (existingUser) {
       return new Response(JSON.stringify({ 
         error: 'User with this email already exists' 

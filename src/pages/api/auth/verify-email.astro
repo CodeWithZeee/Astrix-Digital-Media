@@ -16,7 +16,7 @@ export async function POST({ request }) {
     }
 
     // Verify the email
-    const verified = userService.verifyEmail(token);
+    const verified = await userService.verifyEmail(token);
     
     if (!verified) {
       return new Response(JSON.stringify({ 
@@ -28,7 +28,7 @@ export async function POST({ request }) {
     }
 
     // Get the user details before verification
-    const user = userService.findUserByVerificationToken(token);
+    const user = await userService.findUserByVerificationToken(token);
     if (user) {
       // Send welcome email
       await emailService.sendWelcomeEmail(user.email, user.name);
@@ -67,10 +67,10 @@ export async function GET({ url }) {
     }
 
     // Get the user details before verification
-    const user = userService.findUserByVerificationToken(token);
+    const user = await userService.findUserByVerificationToken(token);
     
     // Verify the email
-    const verified = userService.verifyEmail(token);
+    const verified = await userService.verifyEmail(token);
     
     if (!verified) {
       return new Response(JSON.stringify({ 

@@ -322,7 +322,7 @@ html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
                 <path d="M70.865,101.78c0,4.774,3.886,8.657,8.66,8.657c4.774,0,8.657-3.883,8.657-8.657c0-4.773-3.883-8.656-8.657-8.656    C74.751,93.124,70.865,97.006,70.865,101.78z"></path>
               </svg>
             </div>
-            <form action="#" method="post" id="contact_form">
+            <form id="contact_form">
               <div class="name">
                 <label for="firstName"></label>
                 <input type="text" placeholder="First Name" name="firstName" id="firstName_input" required>
@@ -370,8 +370,8 @@ html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
                 </select>
               </div>
               <div class="message">
-                <label for="businessNeeds"></label>
-                <textarea name="businessNeeds" placeholder="Business Needs" id="businessNeeds_input" cols="30" rows="5" required></textarea>
+                <label for="message"></label>
+                <textarea name="message" placeholder="Business Needs" required></textarea>
               </div>
               <div class="submit">
                 <input type="submit" value="Book My Demo Call" id="form_button" />
@@ -384,108 +384,6 @@ html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
         </div>
       </div>
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-      // Declare emailjs for TypeScript
-      declare const emailjs: any;
-      
-      // Initialize EmailJS
-      (function() {
-        emailjs.init("YOUR_PUBLIC_KEY_HERE"); // Replace with your actual EmailJS public key
-      })();
-
-      document.addEventListener('DOMContentLoaded', function() {
-        const contactForm = document.getElementById('contact_form') as HTMLFormElement;
-        
-        if (contactForm) {
-          contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const firstName = formData.get('firstName') as string;
-            const lastName = formData.get('lastName') as string;
-            const email = formData.get('email') as string;
-            const phone = formData.get('phone') as string;
-            const company = formData.get('company') as string;
-            const industry = formData.get('industry') as string;
-            const companySize = formData.get('companySize') as string;
-            const businessNeeds = formData.get('businessNeeds') as string;
-            
-            // Show loading state
-            const submitButton = document.getElementById('form_button') as HTMLInputElement;
-            const originalText = submitButton.value;
-            submitButton.value = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Send confirmation email to user
-            const userEmailParams = {
-              to_name: firstName,
-              to_email: email,
-              company: company,
-              industry: industry,
-              company_size: companySize
-            };
-            
-            // Send notification email to business
-            const businessEmailParams = {
-              from_name: `${firstName} ${lastName}`,
-              email: email,
-              phone: phone,
-              company: company,
-              industry: industry,
-              company_size: companySize,
-              business_needs: businessNeeds
-            };
-            
-            // Send SMS confirmation to user (using Twilio or similar service)
-            const smsMessage = `Hi ${firstName}! Thank you for your demo request with Astrix Digital Media. We'll contact you within 2 hours to schedule your call. - Astrix Team`;
-            
-            // Send emails using EmailJS
-            Promise.all([
-              emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_USER_TEMPLATE_ID_HERE', userEmailParams),
-              emailjs.send('YOUR_SERVICE_ID_HERE', 'YOUR_BUSINESS_TEMPLATE_ID_HERE', businessEmailParams)
-            ])
-            .then(function() {
-              // Success - send SMS (you'll need to implement this with your SMS service)
-              sendSMS(phone, smsMessage);
-              
-              // Show success message
-              alert('Thank you for your demo request! We have sent you a confirmation email and SMS. We will contact you within 2 hours to schedule your demo call.');
-              
-              // Reset form
-              contactForm.reset();
-            })
-            .catch(function(error) {
-              console.error('Email sending failed:', error);
-              alert('Thank you for your demo request! We will contact you within 2 hours to schedule your demo call.');
-              contactForm.reset();
-            })
-            .finally(function() {
-              // Reset button state
-              submitButton.value = originalText;
-              submitButton.disabled = false;
-            });
-          });
-        }
-        
-        // Function to send SMS (you'll need to implement this with your SMS service)
-        function sendSMS(phoneNumber: string, message: string) {
-          // Example using Twilio (you'll need to set up your own Twilio account)
-          // This is a placeholder - you'll need to implement the actual SMS sending
-          console.log(`SMS would be sent to ${phoneNumber}: ${message}`);
-          
-          // For now, we'll just log it. You can implement actual SMS sending with:
-          // - Twilio
-          // - SendGrid SMS
-          // - AWS SNS
-          // - Or any other SMS service
-        }
-      });
-    </script>
-
-
 
     <!-- Location & Support Info -->
     <section class="py-20 bg-gray-50">
@@ -534,17 +432,22 @@ html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
 </Layout>
 
 <script>
-  document.getElementById('contact-form')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Get form data
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', data);
-    // Show success message
-    alert('Thank you! We\'ll be in touch within 2 hours to schedule your demo.');
-    // Reset form
-    form.reset();
+document.getElementById('contact_form')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = value.toString();
   });
+  console.log('Submitting data:', data);
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
+  alert(result.message || 'Thank you! We\'ll be in touch.');
+  form.reset();
+});
 </script>
