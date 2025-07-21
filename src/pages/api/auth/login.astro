@@ -3,6 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { userService, sessionService } from '../../../utils/database.js';
 
+// @ts-ignore
 const JWT_SECRET = process.env['JWT_SECRET'] || 'your-secret-key-change-in-production';
 
 export async function POST({ request }) {
