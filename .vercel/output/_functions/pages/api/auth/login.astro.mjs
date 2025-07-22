@@ -4,7 +4,7 @@ import 'kleur/colors';
 import 'clsx';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { u as userService, s as sessionService } from '../../../chunks/database_EbR-lz9c.mjs';
+import { u as userService, s as sessionService } from '../../../chunks/database_6kt41mMB.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 async function POST({ request }) {

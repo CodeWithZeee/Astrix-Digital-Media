@@ -245,13 +245,23 @@ const sessionService = {
 };
 
 const uri = process.env.MONGO_URI;
+
+if (!uri) {
+  throw new Error("MONGO_URI environment variable is not defined");
+}
+
 const client = new MongoClient(uri);
 
 async function connectDB() {
-  if (!client.topology?.isConnected()) {
-    await client.connect();
+  try {
+    if (!client.topology?.isConnected()) {
+      await client.connect();
+    }
+    return client.db("astrix_db");
+  } catch (error) {
+    console.error("Database connection error:", error);
+    throw new Error("Failed to connect to database");
   }
-  return client.db("astrix_db");
 }
 
 export { connectDB as c, sessionService as s, userService as u };
