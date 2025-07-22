@@ -433,9 +433,9 @@ html.dark .text-sm.text-gray-600.dark\:text-gray-400 {
 
 <script>
 document.getElementById('contact_form')?.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target as HTMLFormElement;
-  const formData = new FormData(form);
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
   const data = {};
   formData.forEach((value, key) => {
     data[key] = value.toString();
@@ -448,6 +448,6 @@ document.getElementById('contact_form')?.addEventListener('submit', async functi
   });
   const result = await response.json();
   alert(result.message || 'Thank you! We\'ll be in touch.');
-  form.reset();
-});
+    form.reset();
+  });
 </script>
